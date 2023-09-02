@@ -7,3 +7,11 @@ title = "Mathematics in type theory 日本語版"
 
 [preprocessor.katex]
 after = ["links"]
+
+[output.html]
+mathjax-support = true
+git-repository-url = "https://github.com/Seasawher/math-in-type-theory-ja"
+
+# 日本語検索に対応していないため，無効にする
+[output.html.search]
+enable = false

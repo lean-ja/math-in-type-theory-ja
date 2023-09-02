@@ -22,7 +22,7 @@
 そして**アイデア**は，数学の純粋に芸術的な部分です．「閃き」の瞬間，問題解決を可能にする洞察力，
 これこそが数学のとらえどころのないアイデアなのです．
 
-Ideas are the part of mathematics that I understand the least, in a formal sense. Here are two questions:
+<!-- Ideas are the part of mathematics that I understand the least, in a formal sense. Here are two questions: -->
 
 アイデアは，形式的な意味で私が最も理解していない数学の一部です．ここに２つの疑問があります：
 

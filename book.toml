@@ -1,0 +1,6 @@
+[book]
+authors = ["Seasawher"]
+language = "ja"
+multilingual = false
+src = "src"
+title = "Mathematics in type theory 日本語版"

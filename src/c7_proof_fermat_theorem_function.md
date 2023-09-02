@@ -4,9 +4,9 @@ So what does a proof of `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`
 
 Prove a theorem! Write a function!
 
-|Universe    |Type |Prop                            |
-|:-----------|:----|:-------------------------------|
-|Type example|ℝ    |2 + 2 = 5, (∀ a : ℕ, a + 0 = a)|
-Term examples|37, π|`add_zero`, `rfl`               |
+|Universe     |Type |Prop                            |
+|:------------|:----|:-------------------------------|
+|Type examples|ℝ    |2 + 2 = 5, (∀ a : ℕ, a + 0 = a)|
+Term examples |37, π|`add_zero`, `rfl`               |
 
 Cheat sheet

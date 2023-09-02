@@ -1,4 +1,5 @@
-# Definitions, true/false statements, and proofs
+<!-- # Definitions, true/false statements, and proofs -->
+# 定義，命題，証明
 
 <!-- In contrast to ideas, the other parts of mathematics (the definitions, theorems/conjectures, and proofs) can be formalised in a foundational system, and hence can be created and stored on a computer in a precise way. By this, I don’t mean a pdf file! Pdf files are exactly what I want to move away from! I mean that people have designed computer programming languages which understand one of the various foundations of mathematics (set theory, type theory, category theory) and then mathematicians can write code in this language which represents the definition, true/false statement or proof in question. -->
 

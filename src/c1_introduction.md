@@ -2,11 +2,11 @@
 
 <!-- What is maths? I think it can basically be classified into four types of thing. There are definitions, true/false statements, proofs, and ideas. -->
 
-数学とは何でしょうか？基本的に４つのタイプに分類できると思う．定義，真偽の記述，そしてアイデアです．
+数学とは何でしょうか？基本的に４つのタイプに分類できると思う．定義，命題，そしてアイデアです．
 
 <!-- **Definitions** (for example the real numbers, or $\pi$) and **true/false statements** (for example the statement of Fermat’s Last Theorem or the statement of the Riemann Hypothesis) are part of the science of mathematics: these are black and white things which have a completely rigorous meaning within some foundational system. -->
 
-**定義** (たとえば実数や $\pi$) や**真偽の記述** (たとえばフェルマーの最終定理やリーマン仮説の記述)
+**定義** (たとえば実数や $\pi$) や**命題** (たとえばフェルマーの最終定理やリーマン仮説のステートメント)
 は数学の科学の一部です：こういったものは，ある基礎的なシステムの中で完全に厳密な意味を持ち，
 白黒はっきりしています．
 

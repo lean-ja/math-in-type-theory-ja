@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>命題は型，証明は項 - Mathematics in type theory 日本語版</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Mathematics in type theory 日本語訳</a></li><li class="chapter-item expanded "><a href="c1_introduction.html"><strong aria-hidden="true">1.</strong> イントロダクション</a></li><li class="chapter-item expanded "><a href="c2_definitions_statements_proofs.html"><strong aria-hidden="true">2.</strong> 定義，命題，証明</a></li><li class="chapter-item expanded "><a href="c3_universes_types_terms.html"><strong aria-hidden="true">3.</strong> 宇宙，型，項</a></li><li class="chapter-item expanded "><a href="c4_theorems_proofs.html"><strong aria-hidden="true">4.</strong> 定理，証明</a></li><li class="chapter-item expanded "><a href="c5_prop_type_proof_term.html" class="active"><strong aria-hidden="true">5.</strong> 命題は型，証明は項</a></li><li class="chapter-item expanded "><a href="c6_elements_theorem.html"><strong aria-hidden="true">6.</strong> 定理の要素</a></li><li class="chapter-item expanded "><a href="c7_proof_fermat_theorem_function.html"><strong aria-hidden="true">7.</strong> フェルマーの最終定理の証明は関数</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Mathematics in type theory 日本語版</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seasawher/math-in-type-theory-ja" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- # Propositions are types, proofs are terms. -->
+<h1 id="命題は型証明は項"><a class="header" href="#命題は型証明は項">命題は型，証明は項</a></h1>
+<!-- This is where the world of type theory seriously diverges from the way things are set up in set theory, and also the way things were set up in my brain up until three years ago. In trying to understand what was going on here, I even realised that mathematicians take some liberties with their language here. Before we start, consider this. The [Bolzano-Weierstrass theorem](https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem) is some statement in analysis about a bounded sequence having a convergent subsequence. I want to talk a little bit about how mathematicians use the phrase “Bolzano-Weierstrass theorem” in practice. A mathematician would say that the Bolzano-Weierstrass theorem is this statement about sequences having convergent subsequences. But if they are in the middle of a proof and need to apply it in order to continue with their proof, they say “by the Bolzano-Weierstrass theorem we deduce that there’s a convergent subsequence”. Nothing seems at all funny about any of this. But what I want to point out is that mathematicians are using the phrase “the Bolzano-Weierstrass theorem” in two different ways. When they say what it is, they are referring to the statement of the theorem. But when they say they’re using the Bolzano Weierstrass theorem, what they are actually using is its proof. The Birch and Swinnerton-Dyer conjecture is a perfectly well-formed true/false statement, you can certainly [say what it is](https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture). But you can’t use the Birch and Swinnerton-Dyer conjecture in the middle of a proof of something else if you want your proof to be complete, because at the time of writing the conjecture is an unsolved problem. Making a clear distinction between the statement of a theorem, and the proof of a theorem, is important here. A mathematician might use the phrase “the Bolzano-Weierstrass theorem” to mean either concept. This informal abuse of notation can confuse beginners, because in the below it’s really important to be able to distinguish between a theorem statement, and a theorem proof; they are two very different things. -->
+<p>これは，型理論の世界観が集合論と大きく異なる点です．何が起こっているのか理解しようとして，
+私は数学者が用語の濫用を行っていることに気づきました．まずそれについて考えてみましょう．
+<a href="https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem">ボルツァーノ＝ワイエルシュトラスの定理</a>
+とは, 解析学における, 収束する部分列を持つ有界数列についてのステートメントです．
+数学者が「ボルツァーノ＝ワイエルシュトラスの定理」という言葉を実際にどのように使うかについて，
+少しお話ししましょう．数学者は，「ボルツァーノ＝ワイエルシュトラスの定理とは，
+収束する部分列を持つ数列に関するこのステートメントのことだ」と言うでしょう．しかし証明の途中で，
+証明を続けるためにこの定理を適用する必要がある場合は，「ボルツァーノ＝ワイエルシュトラスの定理によって，
+収束する部分列があることが推論される」と言います．何もおかしなことではありません．しかし，
+私が指摘したいのは，「ボルツァーノ＝ワイエルシュトラスの定理」という言葉が２つの異なる意味で使われている，
+ということです．「ボルツァーノ＝ワイエルシュトラスの定理とは何か」という場合，
+かれらは定理の記述に言及しています．しかし，「ボルツァーノ＝ワイエルシュトラスの定理を使って」
+という場合，実際に使っているのはその証明です．バーチ・スウィンナートン＝ダイアー予想は，
+完全に整った命題であり，
+確かに <a href="https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture">それが何であるか</a>
+を言うことはできます．
+しかし，証明を完全なものにしたいのであれば，
+バーチ・スウィンナートン＝ダイアー予想を他の何かの証明の途中で使うことはできません．
+なぜなら現時点でこの予想は未解決問題だからです．ここで重要なのは，
+定理のステートメントと定理の証明とを明確に区別することです．
+数学者は「ボルツァーノ＝ワイエルシュトラスの定理」という言葉を，どちらの意味でも使うことがあります．
+このような非形式的な表記の濫用は初学者の混乱を招きます．なぜなら，
+以下では定理のステートメントと定理の証明を区別することが本当に重要だからです．</p>
+<!-- In the [natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/), I use this abuse of notation because I am trying to communicate to mathematicians. The statement `∀ x : ℕ, x + 0 = x` is a true statement, and I say things like “this is called `add_zero` in Lean”. In the natural number game I write statements such as `add_zero : ∀ x : ℕ, x + 0 = x`. But what this means is that the term called `add_zero` in Lean is a proof of `∀ x : ℕ, x + 0 = x`! The colon is being used in the type theory way. I am intentionally vague about this concept in the natural number game. I let mathematicians believe that `add_zero` is somehow equal to the “idea” that $x+0=x$ for all $x$. But what is going on under the hood is that `∀ x : ℕ, x + 0 = x` is a Proposition, which is a type, and `add_zero` is its proof, which is a term. Making a clear distinction between the statement of a theorem, and its proof, is important here. The statements are the types, the proofs are the terms. -->
+<p><a href="http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/">natural number game (自然数ゲーム)</a> の中で，
+私は数学者を相手にしていたのでこのような表記の濫用を行っていました．
+<code>∀ x : ℕ, x + 0 = x</code> という文は真であり，「これは Lean では <code>add_zero</code> と呼ばれる」と私は言っていました．
+natural number game において，私は <code>add_zero : ∀ x : ℕ, x + 0 = x</code> と書いていました．しかし，
+これが何を意味するかといえば，Lean で <code>add_zero</code> と呼ばれる項が <code>∀ x : ℕ, x + 0 = x</code> の証明である，
+ということなのです！コロンは型理論的に使われています．
+私は natural number game では意図的にこの概念を曖昧にしました．
+<code>add_zero</code> はすべての $x$ に対して $x + 0 = x$ であるという「アイデア」と何らかの形で等しいと，
+数学者に信じさせたわけです．しかし裏では <code>∀ x : ℕ, x + 0 = x</code> は命題であり，したがって型であり，
+<code>add_zero</code> はその証明であり，項でもあります．ここで重要なのは，
+定理のステートメントとその証明を区別することです．ステートメントは型であり，証明は項です．</p>
+<!-- * Universe: `Prop` -->
+<ul>
+<li>宇宙 : <code>Prop</code></li>
+</ul>
+<!-- * Examples of types: `2 + 2 = 4`, `2 + 2 = 37`, the statement of Fermat’s Last Theorem — `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`. -->
+<ul>
+<li>具体的な型 : <code>2 + 2 = 4</code>, <code>2 + 2 = 37</code>, フェルマーの最終定理 <code>∀ x y z : ℕ, n &gt; 2 ∧ x^n + y^n = z^n → x*y = 0</code></li>
+</ul>
+<!-- * Examples of terms: the proof that `2 + 2 = 4` (a term of type `2 + 2 = 4`), the proof of Fermat’s Last Theorem (a term of type `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`) -->
+<ul>
+<li>具体的な項 : <code>2 + 2 = 4</code> の証明（<code>2 + 2 = 4</code> 型を持つ項），フェルマーの最終定理の証明
+（<code>∀ x y z : ℕ, n &gt; 2 ∧ x^n + y^n = z^n → x*y = 0</code> という型を持つ項）</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c4_theorems_proofs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="c6_elements_theorem.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c4_theorems_proofs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="c6_elements_theorem.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

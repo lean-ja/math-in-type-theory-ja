@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>定理の要素 - Mathematics in type theory 日本語版</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Mathematics in type theory 日本語訳</a></li><li class="chapter-item expanded "><a href="c1_introduction.html"><strong aria-hidden="true">1.</strong> イントロダクション</a></li><li class="chapter-item expanded "><a href="c2_definitions_statements_proofs.html"><strong aria-hidden="true">2.</strong> 定義，命題，証明</a></li><li class="chapter-item expanded "><a href="c3_universes_types_terms.html"><strong aria-hidden="true">3.</strong> 宇宙，型，項</a></li><li class="chapter-item expanded "><a href="c4_theorems_proofs.html"><strong aria-hidden="true">4.</strong> 定理，証明</a></li><li class="chapter-item expanded "><a href="c5_prop_type_proof_term.html"><strong aria-hidden="true">5.</strong> 命題は型，証明は項</a></li><li class="chapter-item expanded "><a href="c6_elements_theorem.html" class="active"><strong aria-hidden="true">6.</strong> 定理の要素</a></li><li class="chapter-item expanded "><a href="c7_proof_fermat_theorem_function.html"><strong aria-hidden="true">7.</strong> フェルマーの最終定理の証明は関数</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Mathematics in type theory 日本語版</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seasawher/math-in-type-theory-ja" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- # Elements of a theorem -->
+<h1 id="定理の要素"><a class="header" href="#定理の要素">定理の要素</a></h1>
+<!-- So our mental model of the statement `π : ℝ` is that `ℝ`, the type, is “a collection of stuff”, and `π`, the term, is a member of that collection. If we continue with this analogy, it says that the statement `2 + 2 = 4` is some kind of collection, and a proof of `2 + 2 = 4` is a member of that collection. In other words, Lean is suggesting that we model the true/false statement `2 + 2 = 4` as being some sort of a set, and a proof of `2 + 2 = 4` is an element of that set. Now in Lean, it is an inbuilt axiom that all proofs of a proposition are equal. So if `a : 2 + 2 = 4` and `b : 2 + 2 = 4` then `a = b`. This is because we’re working in the `Prop` universe — this is how Propositions behave in Lean. In the `Type` universe the analogue is not remotely true — we have `π : ℝ` and `37 : ℝ` and certainly $\pi\not=37$. This special quirk of the `Prop` universe is called “proof irrelevance”. Formally we could say that if `P : Prop`, if `a : P` and if `b : P` then `a = b`. Of course if a Proposition is false, then it has no proofs at all! It’s like the empty set. So Lean’s model of Propositions is that the true ones are like sets with $1$ element, and the false ones are like sets with $0$ elements. -->
+<p>つまり <code>π : ℝ</code> というステートメントに対する私たちのメンタルモデルは，型である <code>ℝ</code> は「ものの集まり」であり，
+項である <code>π</code> はその集まりのメンバーである，ということです．このアナロジーを続けるなら，
+<code>2 + 2 = 4</code> というステートメントはある種の集まりであり，<code>2 + 2 = 4</code> の証明はそのメンバーです．
+言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code>
+の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
+ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code>
+ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ＿＿ これが Lean における命題の振る舞いです．
+<code>Type</code> 宇宙ではこのようなことはありえません．＿＿ <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
+この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
+形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．
+もちろん，ある命題が偽ならば，その命題には証明は全くありません！空集合のようなものです．
+つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は要素が $0$
+個の集合のようなものだと言っています．</p>
+<!-- Recall that if `f : X → Y` then this means that `f` is a function from `X` to `Y`. Now say $P$ and $Q$ are Propositions, and let’s say that we know $P\implies Q$. What does this mean? It means that $P$ implies $Q$. It means that if $P$ is true, then $Q$ is true. It means that if we have a proof of $P$, we can make a proof of $Q$. It is a function from the proofs of $P$ to the proofs of $Q$. It is a function sending an element of $P$ to an element of $Q$. It is a term of type `P → Q`. Again: a proof $h$ of $P\implies Q$ is a term `h : P → Q`. This is why in the natural number game we use the `→` symbol to denote implication. -->
+<p><code>f : X → Y</code> であるとき，<code>f</code> は <code>X</code> から <code>Y</code> への関数であるということを思い出しましょう．ここで，
+$P$ と $Q$ を命題とし，$P\implies Q$ がわかっているとします．これは何を意味するでしょうか？
+$P$ ならば $Q$ であるということです．これは $P$ が真であるとき，$Q$ も真だということです．
+$P$ の証明があれば，$Q$ の証明もできるということです．$P$ の証明から $Q$ の証明を得る関数です．
+$P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型を持つ項です．繰り返しますが，$P\implies Q$
+の証明は <code>h : P → Q</code> という項 <code>h</code> です．natural number game で，私が <code>→</code>
+記号を含意を表すのに使ったのは，このためです．</p>
+<!-- Let `false` denote a generic false statement (thought of as a set with $0$ elements), and let `true` denote a generic true statement (thought of as a set with $1$ element). Can we construct a term of type `false → false` or a term of type `true → true`? Sure — just use the identity function. In fact, in both cases there is a unique function — the hom sets have size $1$. Can we construct a term of type `false → true`? Sure, there is a function from the set with $0$ elements to a set with $1$ element, and again this function is unique. But can we construct a term of type `true → false`? No we can’t, because where do we send a proof of `true`? There are no proofs of `false` to send it to. So `true → false` is a set of size $0$. This corresponds to the standard truth table for `→`, where the first three statements we analysed were true and the last was false. -->
+<p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文
+（$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code>
+型の項を作ることはできるでしょうか？もちろんです．＿＿ 恒等関数を使えばよいだけです．実際，
+どちらの場合も関数は一意に定まります．＿＿ hom 集合のサイズは $1$ です．<code>false → true</code>
+型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$
+個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？
+これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，
+送る先がありません．したがって <code>true → false</code> はサイズ $0$ の集合です．これは <code>→</code>
+の標準的な真理値表に相当し，最初に分析した３つの文は真で，最後の文は偽です．</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c5_prop_type_proof_term.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="c7_proof_fermat_theorem_function.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c5_prop_type_proof_term.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="c7_proof_fermat_theorem_function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

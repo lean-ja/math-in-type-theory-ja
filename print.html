@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Mathematics in type theory 日本語版</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Mathematics in type theory 日本語訳</a></li><li class="chapter-item expanded "><a href="c1_introduction.html"><strong aria-hidden="true">1.</strong> イントロダクション</a></li><li class="chapter-item expanded "><a href="c2_definitions_statements_proofs.html"><strong aria-hidden="true">2.</strong> 定義，命題，証明</a></li><li class="chapter-item expanded "><a href="c3_universes_types_terms.html"><strong aria-hidden="true">3.</strong> 宇宙，型，項</a></li><li class="chapter-item expanded "><a href="c4_theorems_proofs.html"><strong aria-hidden="true">4.</strong> 定理，証明</a></li><li class="chapter-item expanded "><a href="c5_prop_type_proof_term.html"><strong aria-hidden="true">5.</strong> 命題は型，証明は項</a></li><li class="chapter-item expanded "><a href="c6_elements_theorem.html"><strong aria-hidden="true">6.</strong> 定理の要素</a></li><li class="chapter-item expanded "><a href="c7_proof_fermat_theorem_function.html"><strong aria-hidden="true">7.</strong> フェルマーの最終定理の証明は関数</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Mathematics in type theory 日本語版</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seasawher/math-in-type-theory-ja" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mathematics-in-type-thoery-日本語訳"><a class="header" href="#mathematics-in-type-thoery-日本語訳">Mathematics in type thoery 日本語訳</a></h1>
+<p>原文は <a href="https://xenaproject.wordpress.com/2020/06/20/mathematics-in-type-theory/">Mathematics in type theory.</a> です．</p>
+<h2 id="この翻訳について"><a class="header" href="#この翻訳について">この翻訳について</a></h2>
+<p>この翻訳は有志による<strong>非公式</strong>翻訳です．翻訳に際して，表現を大きく変えた箇所があります．
+また, 用語の訳が一般的でない可能性があります．誤りを含む可能性もあります．ご了承ください．</p>
+<p>また，原文のブログ記事が 2020 年のものであるため，一部記載している事項が現在とは異なる可能性があります．</p>
+<p>誤字脱字，内容の誤りの指摘，翻訳の改善の提案を歓迎いたします．
+この日本語版の<a href="https://github.com/Seasawher/math-in-type-theory-ja">GitHubリポジトリ</a>までお寄せください．</p>
+<p>翻訳に際して，機械翻訳サービス<a href="https://www.deepl.com/ja/translator">DeepL翻訳</a>を参考にしました．</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="イントロダクション"><a class="header" href="#イントロダクション">イントロダクション</a></h1>
+<!-- What is maths? I think it can basically be classified into four types of thing. There are definitions, true/false statements, proofs, and ideas. -->
+<p>数学とは何でしょうか？基本的に４つのタイプに分類できると思う．定義，命題，そしてアイデアです．</p>
+<!-- **Definitions** (for example the real numbers, or $\pi$) and **true/false statements** (for example the statement of Fermat’s Last Theorem or the statement of the Riemann Hypothesis) are part of the science of mathematics: these are black and white things which have a completely rigorous meaning within some foundational system. -->
+<p><strong>定義</strong> (たとえば実数や $\pi$) や<strong>命題</strong> (たとえばフェルマーの最終定理やリーマン仮説のステートメント)
+は数学の科学の一部です：こういったものは，ある基礎的なシステムの中で完全に厳密な意味を持ち，
+白黒はっきりしています．</p>
+<!-- **Proofs** are in some sense the currency of mathematics: proofs win prizes. Constructing them is an art, checking them is a science. This explains, very simply, why computer proof verification systems such as Lean, Coq, Isabelle/HOL, Agda… are much better at checking proofs than constructing them. -->
+<p><strong>証明</strong>はある意味で数学の通貨だといえます：証明は賞で報いられます．証明の構築は芸術であり，
+それを検証するのは科学です．このことは，Lean, Coq, Isabelle/HOL, Agda
+などのコンピュータ証明検証システムが，証明を構築するよりもチェックすることをはるかに得意とする理由を，
+とても簡単に説明しています．</p>
+<!-- And **ideas** are the purely artistic part of mathematics. That “lightbulb” moment, the insight which enables you to solve a problem — this is the elusive mathematical idea. -->
+<p>そして<strong>アイデア</strong>は，数学の純粋に芸術的な部分です．「閃き」の瞬間，問題解決を可能にする洞察力，
+これこそが数学のとらえどころのないアイデアなのです．</p>
+<!-- Ideas are the part of mathematics that I understand the least, in a formal sense. Here are two questions: -->
+<p>アイデアは，形式的な意味で私が最も理解していない数学の一部です．ここに２つの疑問があります：</p>
+<!-- * What is a group? -->
+<ul>
+<li>群とは何ですか？</li>
+</ul>
+<!-- * How do you think about groups? -->
+<ul>
+<li>群をどう考えていますか？</li>
+</ul>
+<!-- The first one is a precise “scientific” question. A group is a set equipped with some extra structure, and which satisfies some axioms. The formal answer is on [Wikipedia’s page on groups](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition). A group is a definition. But the second question is a different kind of question. Different people think about groups in different ways. Say $G$ is a group generated by an element x satisfying $x^5=x^8=1$. What can you say about $G$? If you are a mathematics undergraduate who has just seen the formal definition of a group, you can probably say nothing. If you have a more mature understanding of group theory, you instantly know that this group is trivial, because you have a far more sophisticated model of what is going on. Ideas are complicated, and human-dependent. A computer’s idea of what a group is, is literally a copy of the definition in Wikipedia, and this is one of the reasons that computers are currently bad at proving new theorems by themselves. You can develop a computer’s intuition by teaching it theorems about groups, or teaching it examples of groups, or trying to write AI’s which figure out group theory theorems or examples of groups automatically. But intuition is a very subtle thing, and I do not understand it at all well, so I will say no more about these ideas here. I think that the concept of a map being “canonical” is an idea rather than a definition — I think different mathematicians have different ways of thinking about this weasel word. In this post I’m going to talk about how the three other concepts are implemented in type theory, in the Lean theorem prover. -->
+<p>最初のものは正確な「科学的な」質問です．群とは，ある特別な構造を持ち，ある公理を満たす集合のことです．
+正式な答えは <a href="https://en.wikipedia.org/wiki/Group_(mathematics)#Definition">Wikipediaの群についてのページ</a>
+にあります．群とは定義です．しかし，２つめの質問は種類の異なる質問です．
+群について考える方法は人によって異なります．
+$G$ が $x^5=x^8=1$ を満たす要素 $x$ によって生成される群だとします．$G$ について何が言えるでしょうか？
+もしあなたが数学の学部生で，群の形式的な定義を見たばかりなら，おそらく何も言えないでしょう．
+群論をより深く理解している人なら，即座にこの群が自明であることがわかるでしょう．
+何が起こっているのかについて，はるかに洗練されたモデルを有しているからです．
+アイデアは複雑で，人によって異なるものです．
+群が何であるかについてのコンピュータの理解は，文字通りウィキペディアの定義のコピーです．
+現在コンピュータは新しい定理を自力で証明することを苦手としていますが，その理由のひとつがこれです．
+コンピュータに群に関する定理を教えたり，群の例を教えたり，群論の定理や群の例を自動的に理解する AI
+を作ったりすることで，コンピュータの直感を発達させることができます．
+しかし直感というのはとても微妙なもので，私にはまったく理解できないので，
+ここではこういったアイデアについてはこれ以上語らないことにします．
+写像が canonical (正準) であるという概念は，定義というよりむしろアイデアだと思います．
+数学者によって，このイタチごっこのような言葉に対する考え方は違ってくるでしょう．
+この記事では，他の３つの概念が型理論や Lean theorem prover
+でどのように実装されているかについてお話しようと思います．</p>
+<div style="break-before: page; page-break-before: always;"></div><!-- # Definitions, true/false statements, and proofs -->
+<h1 id="定義命題証明"><a class="header" href="#定義命題証明">定義，命題，証明</a></h1>
+<!-- In contrast to ideas, the other parts of mathematics (the definitions, theorems/conjectures, and proofs) can be formalised in a foundational system, and hence can be created and stored on a computer in a precise way. By this, I don’t mean a pdf file! Pdf files are exactly what I want to move away from! I mean that people have designed computer programming languages which understand one of the various foundations of mathematics (set theory, type theory, category theory) and then mathematicians can write code in this language which represents the definition, true/false statement or proof in question. -->
+<p>アイデアとは対照的に，数学の他の部分（定義，定理/予想, 証明）は基礎的なシステムで形式化することができ，
+したがって精確な方法でコンピュータ上に作成・保存することができます．
+これは pdf ファイルのことではありません！pdf ファイルこそ，私が脱却したいものなのです！
+つまり，様々ある数学の基礎付け（集合論，型理論，圏論）のうち
+1 つを理解するコンピュータプログラミング言語を設計し，その言語で数学者が問題の定義，命題，
+証明を書くことができるということです．</p>
+<!-- I am certainly not qualified to explain how all this works in category theory. In set theory, let me just make one observation. A definition in set theory, for example the definition of the real numbers, or $\pi$, is a set. And a proof is a sequence of steps in *logic*. A definition and a proof seem to me to be two completely different things in set theory. A group is a mixture of these things — a group is an ordered quadruple $(G,m,i,e)$ satisfying some axioms, so it’s a set with some logic attached. -->
+<p>私には，圏論でどのようにこれを行うのかを説明する資格はありません．
+集合論について，ひとつだけ観察してみましょう．集合論における定義，たとえば実数や $\pi$ の定義は集合です．
+そして証明とは，論理のステップをつなげたものです．定義と証明は，
+集合論においては全く異なるもののように私には思えます．＿＿ 群とは，いくつかの講師を満たす順序付き４つ組
+$(G,m,i,e)$ であって，特定の公理を満たすもののことです．つまり，論理が付属した集合です．</p>
+<!-- In type theory however, things are surprisingly different. All three things — definitions, true/false statements, and proofs — are *all the same kind of thing*! They are all **terms**. A group, a proof, the real numbers — they are all terms. This unification of definitions and proofs — of sets and logic — are what seems to make type theory a practical foundational system for teaching all undergraduate level mathematics to computers. -->
+<p>しかし，型理論では驚くほど違います．今挙げた３つのもの ＿＿ 定義，命題，証明 ＿＿
+はすべて同じ種類のものです！これはすべて<strong>項</strong>です．群，証明，実数 ＿＿ これもすべて項です．
+定義と証明の統一，つまり集合と論理の統一が，型理論を実用的な基礎システムたらしめ，
+コンピュータに学部レベルのすべての数学を教えることを可能にしています．</p>
+<div style="break-before: page; page-break-before: always;"></div><!-- # Universes, types, and terms. -->
+<h1 id="宇宙型項"><a class="header" href="#宇宙型項">宇宙，型，項</a></h1>
+<!-- In type theory, everything is a term. But some terms are types. Not every term is a type, but every term has a type. A colon is used to express the type of a term in Lean — the notation `x : T` means that `x` is a term of type `T`. For example, the real number $\pi$ (pi) is a term in Lean, and the real numbers ℝ is a type, and we have $\pi$ : ℝ , that is, $\pi$ is a term of type ℝ. In set theory one writes $\pi\in\mathbb{R}$ , in type theory we write $\pi$ : ℝ. They both express the same mathematical concept, namely “$\pi$ is a real number”. -->
+<p>型理論では，すべてが項です．そしていくつかの項は型でもあります．
+すべての項が型であるわけではありませんが，すべての項は型を持っています．Lean では，
+コロンを使って項の型を表します．＿＿ <code>x : T</code> という表記で，<code>x</code> が <code>T</code> という型の項であることを表します．
+たとえば，実数 $\pi$ は Lean の項であり，実数全体 $\mathbb{R}$ は型であり，<code>π : ℝ</code> が成り立ちます．
+つまり，$\pi$ は型 $\mathbb{R}$ の項です．集合論では $\pi\in\mathbb{R}$ と書きますが，
+型理論では <code>π : ℝ</code> と書きます．どちらも同じ数学的概念，つまり「$\pi$ は実数である」を表します．</p>
+<!-- Now $\pi$ is a term but it’s not a type. In Lean, `x : π` makes no sense. In set theory, $x\in\pi$ does happen to make sense, but this is a weird coincidence because everything is a set. Furthermore, the actual elements of $\pi$ will depend on how the real numbers are implemented (as Dedekind cuts or Cauchy sequences, for example), and hence in set theory $x\in\pi$, whilst being syntactically valid in theory, has no mathematical meaning; it happens to make sense, but this is a quirk of the system. If you’re adamant that $x\in\pi$ should make sense then I say you’ve been brainwashed by set theory. Gauss and Euler will put you right: they were proving theorems about the real numbers before Cauchy and Dedekind came along with their sequences and cuts. There is no reason that $\pi$ needs to have elements, this is a quirk of the set-theoretic foundations of mathematics, and this quirk is eliminated in a type theoretic foundation. -->
+<p>いま $\pi$ は項ですが，型ではありません. Lean では <code>x : π</code> は意味を持ちません．集合論では，
+$x\in\pi$ は意味を持ちますが，これは奇妙な偶然です．さらに，$\pi$ の実際の要素は，
+実数がどのように実装されるか（たとえばデデキント切断やコーシー数列として）に依存するため，
+集合論での $x\in\pi$ は，構文的に意味は持つものの，数学的な意味はありません．
+たまたま意味をなすだけで，システムの癖に過ぎません．もし「 $x \in \pi$ には意味があるはずだ」
+とあなたが断固として言うなら，あなたは集合論に洗脳されているのだと私は言うでしょう．
+ガウスとオイラーは，コーシーとデデキントが数列と切断を導入する以前に，実数に関する定理を証明していました．
+$\pi$ が要素を持つべき理由はありません．これは数学の基礎に集合論を使った際の癖であり，
+型理論を使った場合には解消されます．</p>
+<!-- I claimed above that every term has a type. So what is the type of ℝ? It turns out that `ℝ : Type`. The real numbers are a term of a “universe” type called `Type` — the type theory analogue of the class of all sets. -->
+<p>先ほど，すべての項には型があると書きました．では <code>ℝ</code> の型はなんでしょうか？<code>ℝ : Type</code> が答えです．
+実数全体は，<code>Type</code> と呼ばれる「宇宙」型の項です ＿＿ これは「すべての集合がなすクラス」
+の型理論における類似物です．</p>
+<!-- Many of the mathematical objects which mathematicians think of as definitions either have type `Type`, or have type `T` where `T : Type`. As a vague rule of thumb, the stuff which has elements (groups, rings, fields etc) has type `Type`, and the stuff which doesn’t have elements ($\pi$, $\sqrt{2}$ or an element $g$ of a general group) has type `T` where T is some type. As another vague rule of thumb, things we write using capital letters (a group, a ring,…) or fancy letters (the reals, the rationals) tend to have type `Type`, and things we write using small letters (an element g of a group, a real number r or an integer n) tend to have type `T` where T is what we think of as the set which contains these things. For example `2 : ℕ` and `ℕ : Type`, or if $g$ is an element of the group $G$ then in Lean we have `g : G` and `G : Type`. You can see that there is a three-layer hiearchy here — terms at the bottom, types above them, and the universe at the top. -->
+<p>数学者が定義する数学的対象の多くは，型 <code>Type</code> を持つか，あるいは <code>T : Type</code> であるような型 <code>T</code> を持ちます．
+漠然とした経験則ですが，要素を持つもの（群，環，体など）は <code>Type</code> 型を持ち，
+要素を持たないもの（$\pi$, $\sqrt{2}$ や一般の群の要素 $g$）は <code>T</code> 型を持ちます．
+もう一つのあいまいな経験則として，大文字で書くもの（群や環など）や fancy letter（実数 ℝ や有理数 ℚ ）
+で書くものは <code>Type</code> 型を持ち，小文字で書くもの（群の要素 $g$ や実数 $r$, 整数 $n$）
+は <code>T</code> 型を持つ傾向にあります．たとえば <code>2 : ℕ</code> と <code>ℕ : Type</code> が成り立ちます．また $g$ が群 $G$
+の要素であるとき Lean では <code>g : G</code> と <code>G : Type</code> が成り立ちます．ここには３層の階層があります ＿＿
+一番下に項があり，その上に型があり，最上部に宇宙があります．</p>
+<!-- * Universe : `Type` -->
+<ul>
+<li>宇宙 : <code>Type</code></li>
+</ul>
+<!-- * Examples of types : `ℝ`, `ℕ`, `G` (a group), `R` (a ring), `X` (something a set theorist would call a set), a Banach space, etc. Formally, we say `ℝ : Type`. -->
+<ul>
+<li>具体的な型 : <code>ℝ</code>, <code>ℕ</code>, <code>G</code> (群), <code>R</code> (環), <code>X</code> (集合論者が集合と呼ぶなにか), バナッハ空間など.
+形式的には <code>ℝ : Type</code> などと書きます.</li>
+</ul>
+<!-- * Examples of terms: `π` (a term of type `ℝ`), `g` (an element of the group `G`, so a term of type `G`), `x` (an element of `X`, so a term of type `X`). Formally, we say `g : G`. -->
+<ul>
+<li>具体的な項 : <code>π</code> (型 <code>ℝ</code> の項), <code>g</code> (群 <code>G</code> の要素, つまり型 <code>G</code> の項),
+<code>x</code> (<code>X</code> の要素, つまり型 <code>X</code> の項). 形式的には <code>g : G</code> などと書きます.</li>
+</ul>
+<!-- This hierarchy is more expressive than the hierarchy in set theory, where there are only two levels: classes (e.g. the class of all sets), and sets. -->
+<p>この階層は，クラス（たとえばすべての集合のクラス）と集合の２つのレベルしかない集合論の階層よりも，
+表現力が高いです．</p>
+<!-- There is a standard use of the colon in mathematics — it’s in the notation for functions. If X and Y are sets (if you’re doing set theory) or types (if you’re doing type theory), then the notation for a function from `X` to `Y` is `f : X → Y`. This is actually consistent with Lean’s usage of the colon; Lean’s notation for the collection $\mathrm{Hom}(X,Y)$ of functions from `X` to `Y` is `X → Y` , which is a type (i.e. `X → Y : Type`, corresponding to the fact that set theorists think of $\mathrm{Hom}(X,Y)$ as a set), and `f : X → Y` means that `f` is a term of type `X → Y`, the type-theoretic version of $f \in \mathrm{Hom}(X,Y)$, and the way to say that `f` is a function from `X` to `Y` in type theory. -->
+<p>数学におけるコロンの標準的な使い方があります．＿＿ 関数を書くための記法です．<code>X</code> と <code>Y</code> が集合
+（あなたが集合論を使っている場合）または型（型理論を使っている場合）であるとき，
+<code>X</code> から <code>Y</code> への関数を <code>f : X → Y</code> と書きます．これは実は Lean におけるコロンの使い方と一致sています，
+<code>X</code> から <code>Y</code> への関数の集まり $\mathrm{Hom}(X,Y)$ に対する Lean の表記法は <code>X → Y</code> であり，
+これは型です．（つまり <code>X → Y : Type</code> です．これは集合論で
+$\mathrm{Hom}(X,Y)$ を集合と考えることに対応しています）<code>f : X → Y</code> は <code>f</code> が <code>X → Y</code>
+型の項であることを意味し．集合論でいう $f \in \mathrm{Hom}(X,Y)$ に対応します．これは型理論において，
+<code>f</code> が <code>X</code> から <code>Y</code> への関数であることを書き表すやり方です．</p>
+<!-- (Not for exam) Strictly speaking, universes are types, and types are terms, but this is a linguistic issue: often when people speak of types, they mean types which are not universes, and when people speak of terms they mean terms which are not types. But not always. This confused me when I was a beginner. -->
+<p>（これは試験に出ません）厳密に言えば，宇宙は型であり，型は項ですが，これは用語の問題です．
+多くの場合，ひとが型について語るとき，それは宇宙ではない型を意味し，ひとが項について語るとき，
+それは型ではない項を意味します．しかし常にそうとは限りません．私が初心者の頃は，これで混乱しました．</p>
+<div style="break-before: page; page-break-before: always;"></div><!-- # Theorems and proofs -->
+<h1 id="定理と証明"><a class="header" href="#定理と証明">定理と証明</a></h1>
+<!-- This is where the fun starts. So far, it just looks like a type is what a type theorist calls a set, and a term is what they call an element. But let’s now look at another universe in Lean’s type theory, the universe `Prop` of true/false statements, where our traditional mental model of what’s going on is quite different. We will see how theorem statements and proofs can be modelled in the same way as types and terms. -->
+<p>ここからが楽しいところです，ここまで，型とは型理論で集合と呼ばれるものであり，
+項とは型理論で要素と呼ばれるものでした．しかし，ここで Lean の型理論におけるもう一つの宇宙，
+命題の宇宙 <code>Prop</code> を見てみましょう．そこで起こることは，私たちの伝統的なメンタルモデルとは全く異なります．
+定理のステートメントと証明が，型や項と同じようにどのようにモデル化できるかを見ていきます．</p>
+<!-- So, how does this all work? As well as the universe `Type`, there is a second universe in Lean’s type theory called `Prop`. The terms of type `Prop` are true/false statements. There is an unfortunate notation clash here. In mathematics, the word proposition is often used to mean a baby theorem, and theorems are true (or else they would be conjectures or counterexamples or something). Here we are using the the word Proposition in the same way as the logicians do — a Proposition is a generic true/false statement, whose truth value is of no relevance. -->
+<p>どのように機能するのでしょうか？Lean の型理論には <code>Type</code> という宇宙だけでなく，
+<code>Prop</code> という第二の宇宙があります．<code>Prop</code> 型の項は命題です．ここで残念な表記の衝突があります．
+数学では，proposition (命題)という言葉はしばしば定理のこどもという意味で使われますが，定理は真です．
+（そうでなければ予想や反例です）ここでは，論理学者と同じように命題という言葉を使います．
+命題とは一般的な真か偽かどちらかになる文のことであり，それが正しいか誤りかは関係ありません．</p>
+<!-- This will all be clearer with examples. 2 + 2 = 4 is a Proposition, so we can write `2 + 2 = 4 : Prop`. But 2 + 2 = 5 is also a Proposition, so `2 + 2 = 5 : Prop` as well. I’ll say it again — Propositions do not have to be true! Propositions are true/false statements. Let’s see some more complex examples. -->
+<p>例を見るとわかりやすいでしょう．$2 + 2 = 4$ は命題なので <code>2 + 2 = 4 : Prop</code> と書くことができます．
+また，$2 + 2 = 5$ も命題なので，<code>2 + 2 = 5 : Prop</code> とも書くことができます．何度も言いますが，
+命題が真である必要はありません！命題は真か偽かどちらかになる文のことです．
+もう少し複雑な例を見てみましょう．</p>
+<!-- The true/false statement that x+0=x for all natural numbers x is a Proposition: in Lean this can be expressed as `(∀ x : ℕ, x + 0 = x) : Prop` . A Proposition is a term of type `Prop` (just like the types we saw earlier were terms of type `Type`). Let RH denote the statement of the Riemann Hypothesis. Then `RH : Prop`. We don’t care if it’s true, false, independent of the axioms of mathematics, undecidable, whatever. A Proposition is a true/false statement. Let’s look at the part of Lean’s type theory hierarchy which lives in the `Prop` universe. -->
+<p>「すべての自然数 $x$ について $x + 0 = x$ である」という文は命題です．Lean では，これは
+<code>(∀ x : ℕ, x + 0 = x) : Prop</code> と表せます．命題は <code>Prop</code> 型を持つ項です．
+（先ほど見てきた項が型 <code>Type</code> を持っていたように）RH をリーマン仮説のステートメントとします．
+すると <code>RH : Prop</code> となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか．
+等は問いません．命題とは真か偽かどちらかになる文のことです．Lean の型理論の階層のうち，
+<code>Prop</code> 宇宙に住む部分を見てみましょう．</p>
+<!-- * Universe: `Prop` -->
+<ul>
+<li>宇宙 : <code>Prop</code></li>
+</ul>
+<!-- * Examples of types : `2 + 2 = 4`, `2 + 2 = 5`, the statement of Fermat’s Last Theorem, the statement of the Riemann Hypothesis. -->
+<ul>
+<li>具体的な型 :  <code>2 + 2 = 4</code>, <code>2 + 2 = 5</code>, フェルマーの最終定理のステートメント，リーマン仮説のステートメント</li>
+</ul>
+<!-- * Examples of terms: ?? -->
+<ul>
+<li>具体的な項 : ??</li>
+</ul>
+<!-- So what are the terms in this three-layer `Prop` hierarchy? They are the proofs! -->
+<p>３層目の，<code>Prop</code> 階層の項にあたるものは何でしょうか？それは証明です！</p>
+<div style="break-before: page; page-break-before: always;"></div><!-- # Propositions are types, proofs are terms. -->
+<h1 id="命題は型証明は項"><a class="header" href="#命題は型証明は項">命題は型，証明は項</a></h1>
+<!-- This is where the world of type theory seriously diverges from the way things are set up in set theory, and also the way things were set up in my brain up until three years ago. In trying to understand what was going on here, I even realised that mathematicians take some liberties with their language here. Before we start, consider this. The [Bolzano-Weierstrass theorem](https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem) is some statement in analysis about a bounded sequence having a convergent subsequence. I want to talk a little bit about how mathematicians use the phrase “Bolzano-Weierstrass theorem” in practice. A mathematician would say that the Bolzano-Weierstrass theorem is this statement about sequences having convergent subsequences. But if they are in the middle of a proof and need to apply it in order to continue with their proof, they say “by the Bolzano-Weierstrass theorem we deduce that there’s a convergent subsequence”. Nothing seems at all funny about any of this. But what I want to point out is that mathematicians are using the phrase “the Bolzano-Weierstrass theorem” in two different ways. When they say what it is, they are referring to the statement of the theorem. But when they say they’re using the Bolzano Weierstrass theorem, what they are actually using is its proof. The Birch and Swinnerton-Dyer conjecture is a perfectly well-formed true/false statement, you can certainly [say what it is](https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture). But you can’t use the Birch and Swinnerton-Dyer conjecture in the middle of a proof of something else if you want your proof to be complete, because at the time of writing the conjecture is an unsolved problem. Making a clear distinction between the statement of a theorem, and the proof of a theorem, is important here. A mathematician might use the phrase “the Bolzano-Weierstrass theorem” to mean either concept. This informal abuse of notation can confuse beginners, because in the below it’s really important to be able to distinguish between a theorem statement, and a theorem proof; they are two very different things. -->
+<p>これは，型理論の世界観が集合論と大きく異なる点です．何が起こっているのか理解しようとして，
+私は数学者が用語の濫用を行っていることに気づきました．まずそれについて考えてみましょう．
+<a href="https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem">ボルツァーノ＝ワイエルシュトラスの定理</a>
+とは, 解析学における, 収束する部分列を持つ有界数列についてのステートメントです．
+数学者が「ボルツァーノ＝ワイエルシュトラスの定理」という言葉を実際にどのように使うかについて，
+少しお話ししましょう．数学者は，「ボルツァーノ＝ワイエルシュトラスの定理とは，
+収束する部分列を持つ数列に関するこのステートメントのことだ」と言うでしょう．しかし証明の途中で，
+証明を続けるためにこの定理を適用する必要がある場合は，「ボルツァーノ＝ワイエルシュトラスの定理によって，
+収束する部分列があることが推論される」と言います．何もおかしなことではありません．しかし，
+私が指摘したいのは，「ボルツァーノ＝ワイエルシュトラスの定理」という言葉が２つの異なる意味で使われている，
+ということです．「ボルツァーノ＝ワイエルシュトラスの定理とは何か」という場合，
+かれらは定理の記述に言及しています．しかし，「ボルツァーノ＝ワイエルシュトラスの定理を使って」
+という場合，実際に使っているのはその証明です．バーチ・スウィンナートン＝ダイアー予想は，
+完全に整った命題であり，
+確かに <a href="https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture">それが何であるか</a>
+を言うことはできます．
+しかし，証明を完全なものにしたいのであれば，
+バーチ・スウィンナートン＝ダイアー予想を他の何かの証明の途中で使うことはできません．
+なぜなら現時点でこの予想は未解決問題だからです．ここで重要なのは，
+定理のステートメントと定理の証明とを明確に区別することです．
+数学者は「ボルツァーノ＝ワイエルシュトラスの定理」という言葉を，どちらの意味でも使うことがあります．
+このような非形式的な表記の濫用は初学者の混乱を招きます．なぜなら，
+以下では定理のステートメントと定理の証明を区別することが本当に重要だからです．</p>
+<!-- In the [natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/), I use this abuse of notation because I am trying to communicate to mathematicians. The statement `∀ x : ℕ, x + 0 = x` is a true statement, and I say things like “this is called `add_zero` in Lean”. In the natural number game I write statements such as `add_zero : ∀ x : ℕ, x + 0 = x`. But what this means is that the term called `add_zero` in Lean is a proof of `∀ x : ℕ, x + 0 = x`! The colon is being used in the type theory way. I am intentionally vague about this concept in the natural number game. I let mathematicians believe that `add_zero` is somehow equal to the “idea” that $x+0=x$ for all $x$. But what is going on under the hood is that `∀ x : ℕ, x + 0 = x` is a Proposition, which is a type, and `add_zero` is its proof, which is a term. Making a clear distinction between the statement of a theorem, and its proof, is important here. The statements are the types, the proofs are the terms. -->
+<p><a href="http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/">natural number game (自然数ゲーム)</a> の中で，
+私は数学者を相手にしていたのでこのような表記の濫用を行っていました．
+<code>∀ x : ℕ, x + 0 = x</code> という文は真であり，「これは Lean では <code>add_zero</code> と呼ばれる」と私は言っていました．
+natural number game において，私は <code>add_zero : ∀ x : ℕ, x + 0 = x</code> と書いていました．しかし，
+これが何を意味するかといえば，Lean で <code>add_zero</code> と呼ばれる項が <code>∀ x : ℕ, x + 0 = x</code> の証明である，
+ということなのです！コロンは型理論的に使われています．
+私は natural number game では意図的にこの概念を曖昧にしました．
+<code>add_zero</code> はすべての $x$ に対して $x + 0 = x$ であるという「アイデア」と何らかの形で等しいと，
+数学者に信じさせたわけです．しかし裏では <code>∀ x : ℕ, x + 0 = x</code> は命題であり，したがって型であり，
+<code>add_zero</code> はその証明であり，項でもあります．ここで重要なのは，
+定理のステートメントとその証明を区別することです．ステートメントは型であり，証明は項です．</p>
+<!-- * Universe: `Prop` -->
+<ul>
+<li>宇宙 : <code>Prop</code></li>
+</ul>
+<!-- * Examples of types: `2 + 2 = 4`, `2 + 2 = 37`, the statement of Fermat’s Last Theorem — `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`. -->
+<ul>
+<li>具体的な型 : <code>2 + 2 = 4</code>, <code>2 + 2 = 37</code>, フェルマーの最終定理 <code>∀ x y z : ℕ, n &gt; 2 ∧ x^n + y^n = z^n → x*y = 0</code></li>
+</ul>
+<!-- * Examples of terms: the proof that `2 + 2 = 4` (a term of type `2 + 2 = 4`), the proof of Fermat’s Last Theorem (a term of type `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`) -->
+<ul>
+<li>具体的な項 : <code>2 + 2 = 4</code> の証明（<code>2 + 2 = 4</code> 型を持つ項），フェルマーの最終定理の証明
+（<code>∀ x y z : ℕ, n &gt; 2 ∧ x^n + y^n = z^n → x*y = 0</code> という型を持つ項）</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><!-- # Elements of a theorem -->
+<h1 id="定理の要素"><a class="header" href="#定理の要素">定理の要素</a></h1>
+<!-- So our mental model of the statement `π : ℝ` is that `ℝ`, the type, is “a collection of stuff”, and `π`, the term, is a member of that collection. If we continue with this analogy, it says that the statement `2 + 2 = 4` is some kind of collection, and a proof of `2 + 2 = 4` is a member of that collection. In other words, Lean is suggesting that we model the true/false statement `2 + 2 = 4` as being some sort of a set, and a proof of `2 + 2 = 4` is an element of that set. Now in Lean, it is an inbuilt axiom that all proofs of a proposition are equal. So if `a : 2 + 2 = 4` and `b : 2 + 2 = 4` then `a = b`. This is because we’re working in the `Prop` universe — this is how Propositions behave in Lean. In the `Type` universe the analogue is not remotely true — we have `π : ℝ` and `37 : ℝ` and certainly $\pi\not=37$. This special quirk of the `Prop` universe is called “proof irrelevance”. Formally we could say that if `P : Prop`, if `a : P` and if `b : P` then `a = b`. Of course if a Proposition is false, then it has no proofs at all! It’s like the empty set. So Lean’s model of Propositions is that the true ones are like sets with $1$ element, and the false ones are like sets with $0$ elements. -->
+<p>つまり <code>π : ℝ</code> というステートメントに対する私たちのメンタルモデルは，型である <code>ℝ</code> は「ものの集まり」であり，
+項である <code>π</code> はその集まりのメンバーである，ということです．このアナロジーを続けるなら，
+<code>2 + 2 = 4</code> というステートメントはある種の集まりであり，<code>2 + 2 = 4</code> の証明はそのメンバーです．
+言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code>
+の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
+ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code>
+ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ＿＿ これが Lean における命題の振る舞いです．
+<code>Type</code> 宇宙ではこのようなことはありえません．＿＿ <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
+この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
+形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．
+もちろん，ある命題が偽ならば，その命題には証明は全くありません！空集合のようなものです．
+つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は要素が $0$
+個の集合のようなものだと言っています．</p>
+<!-- Recall that if `f : X → Y` then this means that `f` is a function from `X` to `Y`. Now say $P$ and $Q$ are Propositions, and let’s say that we know $P\implies Q$. What does this mean? It means that $P$ implies $Q$. It means that if $P$ is true, then $Q$ is true. It means that if we have a proof of $P$, we can make a proof of $Q$. It is a function from the proofs of $P$ to the proofs of $Q$. It is a function sending an element of $P$ to an element of $Q$. It is a term of type `P → Q`. Again: a proof $h$ of $P\implies Q$ is a term `h : P → Q`. This is why in the natural number game we use the `→` symbol to denote implication. -->
+<p><code>f : X → Y</code> であるとき，<code>f</code> は <code>X</code> から <code>Y</code> への関数であるということを思い出しましょう．ここで，
+$P$ と $Q$ を命題とし，$P\implies Q$ がわかっているとします．これは何を意味するでしょうか？
+$P$ ならば $Q$ であるということです．これは $P$ が真であるとき，$Q$ も真だということです．
+$P$ の証明があれば，$Q$ の証明もできるということです．$P$ の証明から $Q$ の証明を得る関数です．
+$P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型を持つ項です．繰り返しますが，$P\implies Q$
+の証明は <code>h : P → Q</code> という項 <code>h</code> です．natural number game で，私が <code>→</code>
+記号を含意を表すのに使ったのは，このためです．</p>
+<!-- Let `false` denote a generic false statement (thought of as a set with $0$ elements), and let `true` denote a generic true statement (thought of as a set with $1$ element). Can we construct a term of type `false → false` or a term of type `true → true`? Sure — just use the identity function. In fact, in both cases there is a unique function — the hom sets have size $1$. Can we construct a term of type `false → true`? Sure, there is a function from the set with $0$ elements to a set with $1$ element, and again this function is unique. But can we construct a term of type `true → false`? No we can’t, because where do we send a proof of `true`? There are no proofs of `false` to send it to. So `true → false` is a set of size $0$. This corresponds to the standard truth table for `→`, where the first three statements we analysed were true and the last was false. -->
+<p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文
+（$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code>
+型の項を作ることはできるでしょうか？もちろんです．＿＿ 恒等関数を使えばよいだけです．実際，
+どちらの場合も関数は一意に定まります．＿＿ hom 集合のサイズは $1$ です．<code>false → true</code>
+型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$
+個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？
+これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，
+送る先がありません．したがって <code>true → false</code> はサイズ $0$ の集合です．これは <code>→</code>
+の標準的な真理値表に相当し，最初に分析した３つの文は真で，最後の文は偽です．</p>
+<div style="break-before: page; page-break-before: always;"></div><!-- # The proof of Fermat’s Last Theorem is a function -->
+<h1 id="フェルマーの最終定理の証明は関数"><a class="header" href="#フェルマーの最終定理の証明は関数">フェルマーの最終定理の証明は関数</a></h1>
+<!-- So what does a proof of `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0` look like? Well, there is an arrow involved in that Proposition, so the statement of Fermat’s Last Theorem is some kind of set of the form $\mathrm{Hom}(A,B)$, which means that in Lean, a proof of Fermat’s Last Theorem is actually a function! And here is what that function does. It has four inputs. The first three inputs are natural numbers `x`, `y` and `z`. The fourth input is a proof: it is a proof of the Proposition `n > 2 ∧ x^n + y^n = z^n`. And the output of this function is a proof of the Proposition `x*y = 0`. This is quite an unconventional way to think about what the proof of Fermat’s Last Theorem is, and let me stress that it does not help at all with actually trying to understand the proof — but it is a completely consistent mental model for how mathematics works. Unifying the concept of a number and a proof — thinking of them both as terms — enables you to think of proofs as functions. Lean is a functional programming language, and in particular it is designed with functions at its heart. This, I believe, is why theorem provers such as Lean, Coq and Isabelle/HOL, which use type theory, are now moving ahead of provers such as Metamath and Mizar, which use set theory. -->
+<p>では <code>∀ x y z : ℕ, n &gt; 2 ∧ x^n + y^n = z^n → x*y = 0</code> の証明とはどのようなものでしょうか？
+この命題には矢印が含まれているので，フェルマーの最終定理のステートメントは $\mathrm{Hom}(A,B)$
+という形の集合の一種です．Lean では，フェルマーの最終定理の証明は実際に関数です！
+その関数が何をするかは次の通りです．それは４つの入力を持ちます．最初の３つの入力は自然数 <code>x</code>, <code>y</code>, <code>z</code>
+です．４番目の入力は証明で，命題 <code>n &gt; 2 ∧ x^n + y^n = z^n</code> の証明です．そして出力は <code>x*y=0</code>
+の証明です．これはフェルマーの最終定理の証明とは何かについてのきわめて型破りな考え方であり，
+証明を実際に理解しようとする際には全く役に立たないことを強調しておきましょう． ＿＿ しかし，
+これは数学がどのように機能するかについての完全に一貫したメンタルモデルです．
+数と証明の概念を統一することで，＿＿ つまり両方を項として考えることで，＿＿
+証明を関数として考えることができます．Lean は関数型プログラミング言語であり，
+特に関数を中心に設計されています．現在 Lean や Coq や Isabelle/HOL
+といった型理論を使用した証明支援系が Metamath や Mizar のような集合論を使うものより進んでいるのは，
+このためだと私は確信しています．</p>
+<!-- Prove a theorem! Write a function! -->
+<p>定理を証明しましょう！関数を書きましょう！</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left"></th><th style="text-align: left"></th><th style="text-align: left"></th></tr></thead><tbody>
+<tr><td style="text-align: left">宇宙</td><td style="text-align: left"><code>Type</code></td><td style="text-align: left"><code>Prop</code></td></tr>
+<tr><td style="text-align: left">型の例</td><td style="text-align: left">ℝ</td><td style="text-align: left">2 + 2 = 5, (∀ a : ℕ, a + 0 = a)</td></tr>
+<tr><td style="text-align: left">項の例</td><td style="text-align: left">37, π</td><td style="text-align: left"><code>add_zero</code>, <code>rfl</code></td></tr>
+</tbody></table>
+</div><!-- Cheat sheet -->
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

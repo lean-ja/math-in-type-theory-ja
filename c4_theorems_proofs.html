@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>定理，証明 - Mathematics in type theory 日本語版</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Mathematics in type theory 日本語訳</a></li><li class="chapter-item expanded "><a href="c1_introduction.html"><strong aria-hidden="true">1.</strong> イントロダクション</a></li><li class="chapter-item expanded "><a href="c2_definitions_statements_proofs.html"><strong aria-hidden="true">2.</strong> 定義，命題，証明</a></li><li class="chapter-item expanded "><a href="c3_universes_types_terms.html"><strong aria-hidden="true">3.</strong> 宇宙，型，項</a></li><li class="chapter-item expanded "><a href="c4_theorems_proofs.html" class="active"><strong aria-hidden="true">4.</strong> 定理，証明</a></li><li class="chapter-item expanded "><a href="c5_prop_type_proof_term.html"><strong aria-hidden="true">5.</strong> 命題は型，証明は項</a></li><li class="chapter-item expanded "><a href="c6_elements_theorem.html"><strong aria-hidden="true">6.</strong> 定理の要素</a></li><li class="chapter-item expanded "><a href="c7_proof_fermat_theorem_function.html"><strong aria-hidden="true">7.</strong> フェルマーの最終定理の証明は関数</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Mathematics in type theory 日本語版</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seasawher/math-in-type-theory-ja" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- # Theorems and proofs -->
+<h1 id="定理と証明"><a class="header" href="#定理と証明">定理と証明</a></h1>
+<!-- This is where the fun starts. So far, it just looks like a type is what a type theorist calls a set, and a term is what they call an element. But let’s now look at another universe in Lean’s type theory, the universe `Prop` of true/false statements, where our traditional mental model of what’s going on is quite different. We will see how theorem statements and proofs can be modelled in the same way as types and terms. -->
+<p>ここからが楽しいところです，ここまで，型とは型理論で集合と呼ばれるものであり，
+項とは型理論で要素と呼ばれるものでした．しかし，ここで Lean の型理論におけるもう一つの宇宙，
+命題の宇宙 <code>Prop</code> を見てみましょう．そこで起こることは，私たちの伝統的なメンタルモデルとは全く異なります．
+定理のステートメントと証明が，型や項と同じようにどのようにモデル化できるかを見ていきます．</p>
+<!-- So, how does this all work? As well as the universe `Type`, there is a second universe in Lean’s type theory called `Prop`. The terms of type `Prop` are true/false statements. There is an unfortunate notation clash here. In mathematics, the word proposition is often used to mean a baby theorem, and theorems are true (or else they would be conjectures or counterexamples or something). Here we are using the the word Proposition in the same way as the logicians do — a Proposition is a generic true/false statement, whose truth value is of no relevance. -->
+<p>どのように機能するのでしょうか？Lean の型理論には <code>Type</code> という宇宙だけでなく，
+<code>Prop</code> という第二の宇宙があります．<code>Prop</code> 型の項は命題です．ここで残念な表記の衝突があります．
+数学では，proposition (命題)という言葉はしばしば定理のこどもという意味で使われますが，定理は真です．
+（そうでなければ予想や反例です）ここでは，論理学者と同じように命題という言葉を使います．
+命題とは一般的な真か偽かどちらかになる文のことであり，それが正しいか誤りかは関係ありません．</p>
+<!-- This will all be clearer with examples. 2 + 2 = 4 is a Proposition, so we can write `2 + 2 = 4 : Prop`. But 2 + 2 = 5 is also a Proposition, so `2 + 2 = 5 : Prop` as well. I’ll say it again — Propositions do not have to be true! Propositions are true/false statements. Let’s see some more complex examples. -->
+<p>例を見るとわかりやすいでしょう．$2 + 2 = 4$ は命題なので <code>2 + 2 = 4 : Prop</code> と書くことができます．
+また，$2 + 2 = 5$ も命題なので，<code>2 + 2 = 5 : Prop</code> とも書くことができます．何度も言いますが，
+命題が真である必要はありません！命題は真か偽かどちらかになる文のことです．
+もう少し複雑な例を見てみましょう．</p>
+<!-- The true/false statement that x+0=x for all natural numbers x is a Proposition: in Lean this can be expressed as `(∀ x : ℕ, x + 0 = x) : Prop` . A Proposition is a term of type `Prop` (just like the types we saw earlier were terms of type `Type`). Let RH denote the statement of the Riemann Hypothesis. Then `RH : Prop`. We don’t care if it’s true, false, independent of the axioms of mathematics, undecidable, whatever. A Proposition is a true/false statement. Let’s look at the part of Lean’s type theory hierarchy which lives in the `Prop` universe. -->
+<p>「すべての自然数 $x$ について $x + 0 = x$ である」という文は命題です．Lean では，これは
+<code>(∀ x : ℕ, x + 0 = x) : Prop</code> と表せます．命題は <code>Prop</code> 型を持つ項です．
+（先ほど見てきた項が型 <code>Type</code> を持っていたように）RH をリーマン仮説のステートメントとします．
+すると <code>RH : Prop</code> となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか．
+等は問いません．命題とは真か偽かどちらかになる文のことです．Lean の型理論の階層のうち，
+<code>Prop</code> 宇宙に住む部分を見てみましょう．</p>
+<!-- * Universe: `Prop` -->
+<ul>
+<li>宇宙 : <code>Prop</code></li>
+</ul>
+<!-- * Examples of types : `2 + 2 = 4`, `2 + 2 = 5`, the statement of Fermat’s Last Theorem, the statement of the Riemann Hypothesis. -->
+<ul>
+<li>具体的な型 :  <code>2 + 2 = 4</code>, <code>2 + 2 = 5</code>, フェルマーの最終定理のステートメント，リーマン仮説のステートメント</li>
+</ul>
+<!-- * Examples of terms: ?? -->
+<ul>
+<li>具体的な項 : ??</li>
+</ul>
+<!-- So what are the terms in this three-layer `Prop` hierarchy? They are the proofs! -->
+<p>３層目の，<code>Prop</code> 階層の項にあたるものは何でしょうか？それは証明です！</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c3_universes_types_terms.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="c5_prop_type_proof_term.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c3_universes_types_terms.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="c5_prop_type_proof_term.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

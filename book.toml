@@ -6,7 +6,7 @@ src = "src"
 title = "Mathematics in type theory 日本語版"
 
 [output.html]
-git-repository-url = "https://github.com/Seasawher/math-in-type-theory-ja"
+git-repository-url = "https://github.com/lean-ja/math-in-type-theory-ja"
 
 # 日本語検索に対応していないため，無効にする
 [output.html.search]

@@ -232,11 +232,11 @@ $G$ が $x^5=x^8=1$ を満たす要素 $x$ によって生成される群だと�
 <p>私には，圏論でどのようにこれを行うのかを説明する資格はありません．
 集合論について，ひとつだけ観察してみましょう．集合論における定義，たとえば実数や $\pi$ の定義は集合です．
 そして証明とは，論理のステップをつなげたものです．定義と証明は，
-集合論においては全く異なるもののように私には思えます．＿＿ 群とは，いくつかの講師を満たす順序付き４つ組
+集合論においては全く異なるもののように私には思えます．―― 群とは，いくつかの講師を満たす順序付き４つ組
 $(G,m,i,e)$ であって，特定の公理を満たすもののことです．つまり，論理が付属した集合です．</p>
 <!-- In type theory however, things are surprisingly different. All three things — definitions, true/false statements, and proofs — are *all the same kind of thing*! They are all **terms**. A group, a proof, the real numbers — they are all terms. This unification of definitions and proofs — of sets and logic — are what seems to make type theory a practical foundational system for teaching all undergraduate level mathematics to computers. -->
-<p>しかし，型理論では驚くほど違います．今挙げた３つのもの ＿＿ 定義，命題，証明 ＿＿
-はすべて同じ種類のものです！これはすべて<strong>項</strong>です．群，証明，実数 ＿＿ これもすべて項です．
+<p>しかし，型理論では驚くほど違います．今挙げた３つのもの ―― 定義，命題，証明 ――
+はすべて同じ種類のものです！これはすべて<strong>項</strong>です．群，証明，実数 ―― これもすべて項です．
 定義と証明の統一，つまり集合と論理の統一が，型理論を実用的な基礎システムたらしめ，
 コンピュータに学部レベルのすべての数学を教えることを可能にしています．</p>
 <div style="break-before: page; page-break-before: always;"></div><!-- # Universes, types, and terms. -->
@@ -244,7 +244,7 @@ $(G,m,i,e)$ であって，特定の公理を満たすもののことです．�
 <!-- In type theory, everything is a term. But some terms are types. Not every term is a type, but every term has a type. A colon is used to express the type of a term in Lean — the notation `x : T` means that `x` is a term of type `T`. For example, the real number $\pi$ (pi) is a term in Lean, and the real numbers ℝ is a type, and we have $\pi$ : ℝ , that is, $\pi$ is a term of type ℝ. In set theory one writes $\pi\in\mathbb{R}$ , in type theory we write $\pi$ : ℝ. They both express the same mathematical concept, namely “$\pi$ is a real number”. -->
 <p>型理論では，すべてが項です．そしていくつかの項は型でもあります．
 すべての項が型であるわけではありませんが，すべての項は型を持っています．Lean では，
-コロンを使って項の型を表します．＿＿ <code>x : T</code> という表記で，<code>x</code> が <code>T</code> という型の項であることを表します．
+コロンを使って項の型を表します．―― <code>x : T</code> という表記で，<code>x</code> が <code>T</code> という型の項であることを表します．
 たとえば，実数 $\pi$ は Lean の項であり，実数全体 $\mathbb{R}$ は型であり，<code>π : ℝ</code> が成り立ちます．
 つまり，$\pi$ は型 $\mathbb{R}$ の項です．集合論では $\pi\in\mathbb{R}$ と書きますが，
 型理論では <code>π : ℝ</code> と書きます．どちらも同じ数学的概念，つまり「$\pi$ は実数である」を表します．</p>
@@ -260,7 +260,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 型理論を使った場合には解消されます．</p>
 <!-- I claimed above that every term has a type. So what is the type of ℝ? It turns out that `ℝ : Type`. The real numbers are a term of a “universe” type called `Type` — the type theory analogue of the class of all sets. -->
 <p>先ほど，すべての項には型があると書きました．では <code>ℝ</code> の型はなんでしょうか？<code>ℝ : Type</code> が答えです．
-実数全体は，<code>Type</code> と呼ばれる「宇宙」型の項です ＿＿ これは「すべての集合がなすクラス」
+実数全体は，<code>Type</code> と呼ばれる「宇宙」型の項です ―― これは「すべての集合がなすクラス」
 の型理論における類似物です．</p>
 <!-- Many of the mathematical objects which mathematicians think of as definitions either have type `Type`, or have type `T` where `T : Type`. As a vague rule of thumb, the stuff which has elements (groups, rings, fields etc) has type `Type`, and the stuff which doesn’t have elements ($\pi$, $\sqrt{2}$ or an element $g$ of a general group) has type `T` where T is some type. As another vague rule of thumb, things we write using capital letters (a group, a ring,…) or fancy letters (the reals, the rationals) tend to have type `Type`, and things we write using small letters (an element g of a group, a real number r or an integer n) tend to have type `T` where T is what we think of as the set which contains these things. For example `2 : ℕ` and `ℕ : Type`, or if $g$ is an element of the group $G$ then in Lean we have `g : G` and `G : Type`. You can see that there is a three-layer hiearchy here — terms at the bottom, types above them, and the universe at the top. -->
 <p>数学者が定義する数学的対象の多くは，型 <code>Type</code> を持つか，あるいは <code>T : Type</code> であるような型 <code>T</code> を持ちます．
@@ -269,7 +269,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 もう一つのあいまいな経験則として，大文字で書くもの（群や環など）や fancy letter（実数 ℝ や有理数 ℚ ）
 で書くものは <code>Type</code> 型を持ち，小文字で書くもの（群の要素 $g$ や実数 $r$, 整数 $n$）
 は <code>T</code> 型を持つ傾向にあります．たとえば <code>2 : ℕ</code> と <code>ℕ : Type</code> が成り立ちます．また $g$ が群 $G$
-の要素であるとき Lean では <code>g : G</code> と <code>G : Type</code> が成り立ちます．ここには３層の階層があります ＿＿
+の要素であるとき Lean では <code>g : G</code> と <code>G : Type</code> が成り立ちます．ここには３層の階層があります ――
 一番下に項があり，その上に型があり，最上部に宇宙があります．</p>
 <!-- * Universe : `Type` -->
 <ul>
@@ -289,7 +289,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 <p>この階層は，クラス（たとえばすべての集合のクラス）と集合の２つのレベルしかない集合論の階層よりも，
 表現力が高いです．</p>
 <!-- There is a standard use of the colon in mathematics — it’s in the notation for functions. If X and Y are sets (if you’re doing set theory) or types (if you’re doing type theory), then the notation for a function from `X` to `Y` is `f : X → Y`. This is actually consistent with Lean’s usage of the colon; Lean’s notation for the collection $\mathrm{Hom}(X,Y)$ of functions from `X` to `Y` is `X → Y` , which is a type (i.e. `X → Y : Type`, corresponding to the fact that set theorists think of $\mathrm{Hom}(X,Y)$ as a set), and `f : X → Y` means that `f` is a term of type `X → Y`, the type-theoretic version of $f \in \mathrm{Hom}(X,Y)$, and the way to say that `f` is a function from `X` to `Y` in type theory. -->
-<p>数学におけるコロンの標準的な使い方があります．＿＿ 関数を書くための記法です．<code>X</code> と <code>Y</code> が集合
+<p>数学におけるコロンの標準的な使い方があります．―― 関数を書くための記法です．<code>X</code> と <code>Y</code> が集合
 （あなたが集合論を使っている場合）または型（型理論を使っている場合）であるとき，
 <code>X</code> から <code>Y</code> への関数を <code>f : X → Y</code> と書きます．これは実は Lean におけるコロンの使い方と一致sています，
 <code>X</code> から <code>Y</code> への関数の集まり $\mathrm{Hom}(X,Y)$ に対する Lean の表記法は <code>X → Y</code> であり，
@@ -400,8 +400,8 @@ natural number game において，私は <code>add_zero : ∀ x : ℕ, x + 0 = 
 言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code>
 の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
 ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code>
-ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ＿＿ これが Lean における命題の振る舞いです．
-<code>Type</code> 宇宙ではこのようなことはありえません．＿＿ <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
+ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ―― これが Lean における命題の振る舞いです．
+<code>Type</code> 宇宙ではこのようなことはありえません．―― <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
 この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
 形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．
 もちろん，ある命題が偽ならば，その命題には証明は全くありません！空集合のようなものです．
@@ -418,8 +418,8 @@ $P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型�
 <!-- Let `false` denote a generic false statement (thought of as a set with $0$ elements), and let `true` denote a generic true statement (thought of as a set with $1$ element). Can we construct a term of type `false → false` or a term of type `true → true`? Sure — just use the identity function. In fact, in both cases there is a unique function — the hom sets have size $1$. Can we construct a term of type `false → true`? Sure, there is a function from the set with $0$ elements to a set with $1$ element, and again this function is unique. But can we construct a term of type `true → false`? No we can’t, because where do we send a proof of `true`? There are no proofs of `false` to send it to. So `true → false` is a set of size $0$. This corresponds to the standard truth table for `→`, where the first three statements we analysed were true and the last was false. -->
 <p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文
 （$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code>
-型の項を作ることはできるでしょうか？もちろんです．＿＿ 恒等関数を使えばよいだけです．実際，
-どちらの場合も関数は一意に定まります．＿＿ hom 集合のサイズは $1$ です．<code>false → true</code>
+型の項を作ることはできるでしょうか？もちろんです．―― 恒等関数を使えばよいだけです．実際，
+どちらの場合も関数は一意に定まります．―― hom 集合のサイズは $1$ です．<code>false → true</code>
 型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$
 個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？
 これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，
@@ -434,9 +434,9 @@ $P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型�
 その関数が何をするかは次の通りです．それは４つの入力を持ちます．最初の３つの入力は自然数 <code>x</code>, <code>y</code>, <code>z</code>
 です．４番目の入力は証明で，命題 <code>n &gt; 2 ∧ x^n + y^n = z^n</code> の証明です．そして出力は <code>x*y=0</code>
 の証明です．これはフェルマーの最終定理の証明とは何かについてのきわめて型破りな考え方であり，
-証明を実際に理解しようとする際には全く役に立たないことを強調しておきましょう． ＿＿ しかし，
+証明を実際に理解しようとする際には全く役に立たないことを強調しておきましょう． ―― しかし，
 これは数学がどのように機能するかについての完全に一貫したメンタルモデルです．
-数と証明の概念を統一することで，＿＿ つまり両方を項として考えることで，＿＿
+数と証明の概念を統一することで，―― つまり両方を項として考えることで，――
 証明を関数として考えることができます．Lean は関数型プログラミング言語であり，
 特に関数を中心に設計されています．現在 Lean や Coq や Isabelle/HOL
 といった型理論を使用した証明支援系が Metamath や Mizar のような集合論を使うものより進んでいるのは，

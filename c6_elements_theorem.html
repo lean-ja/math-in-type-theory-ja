@@ -173,8 +173,8 @@
 言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code>
 の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
 ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code>
-ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ＿＿ これが Lean における命題の振る舞いです．
-<code>Type</code> 宇宙ではこのようなことはありえません．＿＿ <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
+ならば <code>a = b</code> となります．<code>Prop</code> 宇宙だから起こることです ―― これが Lean における命題の振る舞いです．
+<code>Type</code> 宇宙ではこのようなことはありえません．―― <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
 この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
 形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．
 もちろん，ある命題が偽ならば，その命題には証明は全くありません！空集合のようなものです．
@@ -191,8 +191,8 @@ $P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型�
 <!-- Let `false` denote a generic false statement (thought of as a set with $0$ elements), and let `true` denote a generic true statement (thought of as a set with $1$ element). Can we construct a term of type `false → false` or a term of type `true → true`? Sure — just use the identity function. In fact, in both cases there is a unique function — the hom sets have size $1$. Can we construct a term of type `false → true`? Sure, there is a function from the set with $0$ elements to a set with $1$ element, and again this function is unique. But can we construct a term of type `true → false`? No we can’t, because where do we send a proof of `true`? There are no proofs of `false` to send it to. So `true → false` is a set of size $0$. This corresponds to the standard truth table for `→`, where the first three statements we analysed were true and the last was false. -->
 <p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文
 （$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code>
-型の項を作ることはできるでしょうか？もちろんです．＿＿ 恒等関数を使えばよいだけです．実際，
-どちらの場合も関数は一意に定まります．＿＿ hom 集合のサイズは $1$ です．<code>false → true</code>
+型の項を作ることはできるでしょうか？もちろんです．―― 恒等関数を使えばよいだけです．実際，
+どちらの場合も関数は一意に定まります．―― hom 集合のサイズは $1$ です．<code>false → true</code>
 型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$
 個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？
 これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，

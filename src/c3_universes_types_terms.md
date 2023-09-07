@@ -5,7 +5,7 @@
 
 型理論では，すべてが項です．そしていくつかの項は型でもあります．
 すべての項が型であるわけではありませんが，すべての項は型を持っています．Lean では，
-コロンを使って項の型を表します．＿＿ `x : T` という表記で，`x` が `T` という型の項であることを表します．
+コロンを使って項の型を表します．―― `x : T` という表記で，`x` が `T` という型の項であることを表します．
 たとえば，実数 $\pi$ は Lean の項であり，実数全体 $\mathbb{R}$ は型であり，`π : ℝ` が成り立ちます．
 つまり，$\pi$ は型 $\mathbb{R}$ の項です．集合論では $\pi\in\mathbb{R}$ と書きますが，
 型理論では `π : ℝ` と書きます．どちらも同じ数学的概念，つまり「$\pi$ は実数である」を表します．
@@ -25,7 +25,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 <!-- I claimed above that every term has a type. So what is the type of ℝ? It turns out that `ℝ : Type`. The real numbers are a term of a “universe” type called `Type` — the type theory analogue of the class of all sets. -->
 
 先ほど，すべての項には型があると書きました．では `ℝ` の型はなんでしょうか？`ℝ : Type` が答えです．
-実数全体は，`Type` と呼ばれる「宇宙」型の項です ＿＿ これは「すべての集合がなすクラス」
+実数全体は，`Type` と呼ばれる「宇宙」型の項です ―― これは「すべての集合がなすクラス」
 の型理論における類似物です．
 
 <!-- Many of the mathematical objects which mathematicians think of as definitions either have type `Type`, or have type `T` where `T : Type`. As a vague rule of thumb, the stuff which has elements (groups, rings, fields etc) has type `Type`, and the stuff which doesn’t have elements ($\pi$, $\sqrt{2}$ or an element $g$ of a general group) has type `T` where T is some type. As another vague rule of thumb, things we write using capital letters (a group, a ring,…) or fancy letters (the reals, the rationals) tend to have type `Type`, and things we write using small letters (an element g of a group, a real number r or an integer n) tend to have type `T` where T is what we think of as the set which contains these things. For example `2 : ℕ` and `ℕ : Type`, or if $g$ is an element of the group $G$ then in Lean we have `g : G` and `G : Type`. You can see that there is a three-layer hiearchy here — terms at the bottom, types above them, and the universe at the top. -->
@@ -36,7 +36,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 もう一つのあいまいな経験則として，大文字で書くもの（群や環など）や fancy letter（実数 ℝ や有理数 ℚ ）
 で書くものは `Type` 型を持ち，小文字で書くもの（群の要素 $g$ や実数 $r$, 整数 $n$）
 は `T` 型を持つ傾向にあります．たとえば `2 : ℕ` と `ℕ : Type` が成り立ちます．また $g$ が群 $G$
-の要素であるとき Lean では `g : G` と `G : Type` が成り立ちます．ここには３層の階層があります ＿＿
+の要素であるとき Lean では `g : G` と `G : Type` が成り立ちます．ここには３層の階層があります ――
 一番下に項があり，その上に型があり，最上部に宇宙があります．
 
 <!-- * Universe : `Type` -->
@@ -55,7 +55,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 
 <!-- There is a standard use of the colon in mathematics — it’s in the notation for functions. If X and Y are sets (if you’re doing set theory) or types (if you’re doing type theory), then the notation for a function from `X` to `Y` is `f : X → Y`. This is actually consistent with Lean’s usage of the colon; Lean’s notation for the collection $\mathrm{Hom}(X,Y)$ of functions from `X` to `Y` is `X → Y` , which is a type (i.e. `X → Y : Type`, corresponding to the fact that set theorists think of $\mathrm{Hom}(X,Y)$ as a set), and `f : X → Y` means that `f` is a term of type `X → Y`, the type-theoretic version of $f \in \mathrm{Hom}(X,Y)$, and the way to say that `f` is a function from `X` to `Y` in type theory. -->
 
-数学におけるコロンの標準的な使い方があります．＿＿ 関数を書くための記法です．`X` と `Y` が集合
+数学におけるコロンの標準的な使い方があります．―― 関数を書くための記法です．`X` と `Y` が集合
 （あなたが集合論を使っている場合）または型（型理論を使っている場合）であるとき，
 `X` から `Y` への関数を `f : X → Y` と書きます．これは実は Lean におけるコロンの使い方と一致sています，
 `X` から `Y` への関数の集まり $\mathrm{Hom}(X,Y)$ に対する Lean の表記法は `X → Y` であり，

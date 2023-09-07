@@ -15,12 +15,12 @@
 私には，圏論でどのようにこれを行うのかを説明する資格はありません．
 集合論について，ひとつだけ観察してみましょう．集合論における定義，たとえば実数や $\pi$ の定義は集合です．
 そして証明とは，論理のステップをつなげたものです．定義と証明は，
-集合論においては全く異なるもののように私には思えます．＿＿ 群とは，いくつかの講師を満たす順序付き４つ組
+集合論においては全く異なるもののように私には思えます．―― 群とは，いくつかの講師を満たす順序付き４つ組
 $(G,m,i,e)$ であって，特定の公理を満たすもののことです．つまり，論理が付属した集合です．
 
 <!-- In type theory however, things are surprisingly different. All three things — definitions, true/false statements, and proofs — are *all the same kind of thing*! They are all **terms**. A group, a proof, the real numbers — they are all terms. This unification of definitions and proofs — of sets and logic — are what seems to make type theory a practical foundational system for teaching all undergraduate level mathematics to computers. -->
 
-しかし，型理論では驚くほど違います．今挙げた３つのもの ＿＿ 定義，命題，証明 ＿＿
-はすべて同じ種類のものです！これはすべて**項**です．群，証明，実数 ＿＿ これもすべて項です．
+しかし，型理論では驚くほど違います．今挙げた３つのもの ―― 定義，命題，証明 ――
+はすべて同じ種類のものです！これはすべて**項**です．群，証明，実数 ―― これもすべて項です．
 定義と証明の統一，つまり集合と論理の統一が，型理論を実用的な基礎システムたらしめ，
 コンピュータに学部レベルのすべての数学を教えることを可能にしています．

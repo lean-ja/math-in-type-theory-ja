@@ -1,6 +1,6 @@
 # Mathematics in type thoery 日本語訳
 
-原文は [Mathematics in type theory.](https://xenaproject.wordpress.com/2020/06/20/mathematics-in-type-theory/) です．
+原文は Kevin Buzzard 氏によるブログ記事 [Mathematics in type theory.](https://xenaproject.wordpress.com/2020/06/20/mathematics-in-type-theory/) です．
 
 ## この翻訳について
 

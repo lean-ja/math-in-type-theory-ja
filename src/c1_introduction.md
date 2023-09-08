@@ -2,7 +2,8 @@
 
 <!-- What is maths? I think it can basically be classified into four types of thing. There are definitions, true/false statements, proofs, and ideas. -->
 
-数学とは何でしょうか？基本的に４つのタイプに分類できると思う．定義，命題，そしてアイデアです．
+数学とは何でしょうか？数学は基本的に４つのタイプに分類できると思います．
+定義，命題，証明，そしてアイデアです．
 
 <!-- **Definitions** (for example the real numbers, or $\pi$) and **true/false statements** (for example the statement of Fermat’s Last Theorem or the statement of the Riemann Hypothesis) are part of the science of mathematics: these are black and white things which have a completely rigorous meaning within some foundational system. -->
 
@@ -13,7 +14,7 @@
 <!-- **Proofs** are in some sense the currency of mathematics: proofs win prizes. Constructing them is an art, checking them is a science. This explains, very simply, why computer proof verification systems such as Lean, Coq, Isabelle/HOL, Agda… are much better at checking proofs than constructing them. -->
 
 **証明**はある意味で数学の通貨だといえます：証明は賞で報いられます．証明の構築は芸術であり，
-それを検証するのは科学です．このことは，Lean, Coq, Isabelle/HOL, Agda
+証明の検証は科学です．このことは，Lean, Coq, Isabelle/HOL, Agda
 などのコンピュータ証明検証システムが，証明を構築するよりもチェックすることをはるかに得意とする理由を，
 とても簡単に説明しています．
 
@@ -42,7 +43,7 @@ $G$ が $x^5=x^8=1$ を満たす要素 $x$ によって生成される群だと�
 群論をより深く理解している人なら，即座にこの群が自明であることがわかるでしょう．
 何が起こっているのかについて，はるかに洗練されたモデルを有しているからです．
 アイデアは複雑で，人によって異なるものです．
-群が何であるかについてのコンピュータの理解は，文字通りウィキペディアの定義のコピーです．
+「群とは何であるか」という問いについてのコンピュータの理解は，文字通りウィキペディアの定義のコピーです．
 現在コンピュータは新しい定理を自力で証明することを苦手としていますが，その理由のひとつがこれです．
 コンピュータに群に関する定理を教えたり，群の例を教えたり，群論の定理や群の例を自動的に理解する AI
 を作ったりすることで，コンピュータの直感を発達させることができます．
@@ -50,5 +51,5 @@ $G$ が $x^5=x^8=1$ を満たす要素 $x$ によって生成される群だと�
 ここではこういったアイデアについてはこれ以上語らないことにします．
 写像が canonical (正準) であるという概念は，定義というよりむしろアイデアだと思います．
 数学者によって，このイタチごっこのような言葉に対する考え方は違ってくるでしょう．
-この記事では，他の３つの概念が型理論や Lean theorem prover
+この記事では，他の３つの概念 (定義，命題，証明) が型理論や Lean theorem prover
 でどのように実装されているかについてお話しようと思います．

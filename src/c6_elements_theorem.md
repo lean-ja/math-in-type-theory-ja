@@ -9,20 +9,21 @@
 言い換えれば，Lean は `2 + 2 = 4` をある種の集合であるとし，`2 + 2 = 4`
 の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
 ある命題の証明はすべて等しいという公理が組み込まれています．つまり `a : 2 + 2 = 4` かつ `b : 2 + 2 = 4`
-ならば `a = b` となります．`Prop` 宇宙だから起こることです ―― これが Lean における命題の振る舞いです．
-`Type` 宇宙ではこのようなことはありえません．―― `π : ℝ` かつ `37 : ℝ` ですが，$\pi\not=37$ です．
+ならば `a = b` となります．これは `Prop` 宇宙の中だから起こることです ―― これが Lean における命題の振る舞いです．
+`Type` 宇宙の中ではこのようなことはありえません．―― `π : ℝ` かつ `37 : ℝ` ですが，$\pi\not=37$ です．
 この `Prop` 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
 形式的には，`P : Prop` に対して `a : P` かつ `b : P` ならば `a = b` である，と言い表せます．
-もちろん，ある命題が偽ならば，その命題には証明は全くありません！空集合のようなものです．
-つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は要素が $0$
-個の集合のようなものだと言っています．
+もちろん，ある命題が偽ならば，その命題には証明は全くありません！偽の命題は空集合のようなものです．
+つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は $0$
+個の要素を持つ集合のようなものだと言っています．
 
 <!-- Recall that if `f : X → Y` then this means that `f` is a function from `X` to `Y`. Now say $P$ and $Q$ are Propositions, and let’s say that we know $P\implies Q$. What does this mean? It means that $P$ implies $Q$. It means that if $P$ is true, then $Q$ is true. It means that if we have a proof of $P$, we can make a proof of $Q$. It is a function from the proofs of $P$ to the proofs of $Q$. It is a function sending an element of $P$ to an element of $Q$. It is a term of type `P → Q`. Again: a proof $h$ of $P\implies Q$ is a term `h : P → Q`. This is why in the natural number game we use the `→` symbol to denote implication. -->
 
 `f : X → Y` であるとき，`f` は `X` から `Y` への関数であるということを思い出しましょう．ここで，
 $P$ と $Q$ を命題とし，$P\implies Q$ がわかっているとします．これは何を意味するでしょうか？
-$P$ ならば $Q$ であるということです．これは $P$ が真であるとき，$Q$ も真だということです．
-$P$ の証明があれば，$Q$ の証明もできるということです．$P$ の証明から $Q$ の証明を得る関数です．
+これは $P$ ならば $Q$ であるということを意味します．$P$ が真であるとき，$Q$ も真だということです．
+$P$ の証明があれば，$Q$ の証明も作れるということです．
+$P\implies Q$ は $P$ の証明から $Q$ の証明を得る関数です．
 $P$ の要素を $Q$ の要素に送る関数です．`P → Q` 型を持つ項です．繰り返しますが，$P\implies Q$
 の証明は `h : P → Q` という項 `h` です．natural number game で，私が `→`
 記号を含意を表すのに使ったのは，このためです．

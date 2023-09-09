@@ -167,26 +167,28 @@
                         <!-- # Theorems and proofs -->
 <h1 id="定理と証明"><a class="header" href="#定理と証明">定理と証明</a></h1>
 <!-- This is where the fun starts. So far, it just looks like a type is what a type theorist calls a set, and a term is what they call an element. But let’s now look at another universe in Lean’s type theory, the universe `Prop` of true/false statements, where our traditional mental model of what’s going on is quite different. We will see how theorem statements and proofs can be modelled in the same way as types and terms. -->
-<p>ここからが楽しいところです，ここまで，型とは型理論で集合と呼ばれるものであり，
-項とは型理論で要素と呼ばれるものでした．しかし，ここで Lean の型理論におけるもう一つの宇宙，
+<p>ここからが楽しいところです．ここまで，型とは型理論における集合の呼び名であり，
+項とは型理論における要素の呼び名でした．しかし，ここで Lean の型理論におけるもう一つの宇宙，
 命題の宇宙 <code>Prop</code> を見てみましょう．そこで起こることは，私たちの伝統的なメンタルモデルとは全く異なります．
-定理のステートメントと証明が，型や項と同じようにどのようにモデル化できるかを見ていきます．</p>
+ここでは，定理のステートメントと証明が，型や項と同じようにどのようにモデル化できるかを見ていきます．</p>
 <!-- So, how does this all work? As well as the universe `Type`, there is a second universe in Lean’s type theory called `Prop`. The terms of type `Prop` are true/false statements. There is an unfortunate notation clash here. In mathematics, the word proposition is often used to mean a baby theorem, and theorems are true (or else they would be conjectures or counterexamples or something). Here we are using the the word Proposition in the same way as the logicians do — a Proposition is a generic true/false statement, whose truth value is of no relevance. -->
-<p>どのように機能するのでしょうか？Lean の型理論には <code>Type</code> という宇宙だけでなく，
+<p>定理のステートメントと証明はどのようにモデル化されるのでしょうか？
+Lean の型理論には <code>Type</code> という宇宙だけでなく，
 <code>Prop</code> という第二の宇宙があります．<code>Prop</code> 型の項は命題です．ここで残念な表記の衝突があります．
 数学では，proposition (命題)という言葉はしばしば定理のこどもという意味で使われますが，定理は真です．
-（そうでなければ予想や反例です）ここでは，論理学者と同じように命題という言葉を使います．
-命題とは一般的な真か偽かどちらかになる文のことであり，それが正しいか誤りかは関係ありません．</p>
+（そうでなければ予想や反例と呼ばれます）したがって，数学において命題という言葉は真である文を指しますが，
+ここでは，論理学者と同じように命題という言葉を使います．
+つまり，命題とは一般的な真か偽かどちらかになる文のことであり，それが正しいか誤りかは関係ありません．</p>
 <!-- This will all be clearer with examples. 2 + 2 = 4 is a Proposition, so we can write `2 + 2 = 4 : Prop`. But 2 + 2 = 5 is also a Proposition, so `2 + 2 = 5 : Prop` as well. I’ll say it again — Propositions do not have to be true! Propositions are true/false statements. Let’s see some more complex examples. -->
 <p>例を見るとわかりやすいでしょう．$2 + 2 = 4$ は命題なので <code>2 + 2 = 4 : Prop</code> と書くことができます．
-また，$2 + 2 = 5$ も命題なので，<code>2 + 2 = 5 : Prop</code> とも書くことができます．何度も言いますが，
+しかし，$2 + 2 = 5$ も命題なので，<code>2 + 2 = 5 : Prop</code> と書くこともできます．何度も言いますが，
 命題が真である必要はありません！命題は真か偽かどちらかになる文のことです．
 もう少し複雑な例を見てみましょう．</p>
 <!-- The true/false statement that x+0=x for all natural numbers x is a Proposition: in Lean this can be expressed as `(∀ x : ℕ, x + 0 = x) : Prop` . A Proposition is a term of type `Prop` (just like the types we saw earlier were terms of type `Type`). Let RH denote the statement of the Riemann Hypothesis. Then `RH : Prop`. We don’t care if it’s true, false, independent of the axioms of mathematics, undecidable, whatever. A Proposition is a true/false statement. Let’s look at the part of Lean’s type theory hierarchy which lives in the `Prop` universe. -->
 <p>「すべての自然数 $x$ について $x + 0 = x$ である」という文は命題です．Lean では，これは
 <code>(∀ x : ℕ, x + 0 = x) : Prop</code> と表せます．命題は <code>Prop</code> 型を持つ項です．
-（先ほど見てきた項が型 <code>Type</code> を持っていたように）RH をリーマン仮説のステートメントとします．
-すると <code>RH : Prop</code> となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか．
+（先ほど見てきた項が型 <code>Type</code> を持っていたのと同様です）RH をリーマン仮説のステートメントとします．
+すると <code>RH : Prop</code> となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか，
 等は問いません．命題とは真か偽かどちらかになる文のことです．Lean の型理論の階層のうち，
 <code>Prop</code> 宇宙に住む部分を見てみましょう．</p>
 <!-- * Universe: `Prop` -->
@@ -202,7 +204,7 @@
 <li>具体的な項 : ??</li>
 </ul>
 <!-- So what are the terms in this three-layer `Prop` hierarchy? They are the proofs! -->
-<p>３層目の，<code>Prop</code> 階層の項にあたるものは何でしょうか？それは証明です！</p>
+<p>この３層構造の <code>Prop</code> 階層において，項にあたるものは何でしょうか？それは証明です！</p>
 
                     </main>
 

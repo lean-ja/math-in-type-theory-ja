@@ -13,18 +13,20 @@
 <!-- Now $\pi$ is a term but it’s not a type. In Lean, `x : π` makes no sense. In set theory, $x\in\pi$ does happen to make sense, but this is a weird coincidence because everything is a set. Furthermore, the actual elements of $\pi$ will depend on how the real numbers are implemented (as Dedekind cuts or Cauchy sequences, for example), and hence in set theory $x\in\pi$, whilst being syntactically valid in theory, has no mathematical meaning; it happens to make sense, but this is a quirk of the system. If you’re adamant that $x\in\pi$ should make sense then I say you’ve been brainwashed by set theory. Gauss and Euler will put you right: they were proving theorems about the real numbers before Cauchy and Dedekind came along with their sequences and cuts. There is no reason that $\pi$ needs to have elements, this is a quirk of the set-theoretic foundations of mathematics, and this quirk is eliminated in a type theoretic foundation. -->
 
 いま $\pi$ は項ですが，型ではありません. Lean では `x : π` は意味を持ちません．集合論では，
-$x\in\pi$ は意味を持ちますが，これは奇妙な偶然です．さらに，$\pi$ の実際の要素は，
-実数がどのように実装されるか（たとえばデデキント切断やコーシー数列として）に依存するため，
-集合論での $x\in\pi$ は，構文的に意味は持つものの，数学的な意味はありません．
+$x\in\pi$ は意味を持ちますが，これは集合論において全てが集合であることに起因する，奇妙な偶然です．
+さらに，$\pi$ の実際の要素は，
+実数がどのように実装されるか（たとえばデデキント切断としてか，コーシー数列としてか）
+に依存するため，集合論での $x\in\pi$ は，構文的には意味を持つものの，数学的な意味はありません．
 たまたま意味をなすだけで，システムの癖に過ぎません．もし「 $x \in \pi$ には意味があるはずだ」
-とあなたが断固として言うなら，あなたは集合論に洗脳されているのだと私は言うでしょう．
+とあなたが断固として言うなら，「あなたは集合論に洗脳されているのだ」と私は言うでしょう．
+ガウスとオイラーがあなたを正しい方向に導いてくれるでしょう：
 ガウスとオイラーは，コーシーとデデキントが数列と切断を導入する以前に，実数に関する定理を証明していました．
 $\pi$ が要素を持つべき理由はありません．これは数学の基礎に集合論を使った際の癖であり，
-型理論を使った場合には解消されます．
+その癖は型理論を使った場合には解消されます．
 
 <!-- I claimed above that every term has a type. So what is the type of ℝ? It turns out that `ℝ : Type`. The real numbers are a term of a “universe” type called `Type` — the type theory analogue of the class of all sets. -->
 
-先ほど，すべての項には型があると書きました．では `ℝ` の型はなんでしょうか？`ℝ : Type` が答えです．
+先ほど，すべての項は型を持つと書きました．では `ℝ` の型はなんでしょうか？`ℝ : Type` が答えです．
 実数全体は，`Type` と呼ばれる「宇宙」型の項です ―― これは「すべての集合がなすクラス」
 の型理論における類似物です．
 
@@ -36,7 +38,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 もう一つのあいまいな経験則として，大文字で書くもの（群や環など）や fancy letter（実数 ℝ や有理数 ℚ ）
 で書くものは `Type` 型を持ち，小文字で書くもの（群の要素 $g$ や実数 $r$, 整数 $n$）
 は `T` 型を持つ傾向にあります．たとえば `2 : ℕ` と `ℕ : Type` が成り立ちます．また $g$ が群 $G$
-の要素であるとき Lean では `g : G` と `G : Type` が成り立ちます．ここには３層の階層があります ――
+の要素であるとき，Lean では `g : G` と `G : Type` が成り立ちます．ここには３層の階層があります ――
 一番下に項があり，その上に型があり，最上部に宇宙があります．
 
 <!-- * Universe : `Type` -->
@@ -56,7 +58,7 @@ $\pi$ が要素を持つべき理由はありません．これは数学の基�
 <!-- There is a standard use of the colon in mathematics — it’s in the notation for functions. If X and Y are sets (if you’re doing set theory) or types (if you’re doing type theory), then the notation for a function from `X` to `Y` is `f : X → Y`. This is actually consistent with Lean’s usage of the colon; Lean’s notation for the collection $\mathrm{Hom}(X,Y)$ of functions from `X` to `Y` is `X → Y` , which is a type (i.e. `X → Y : Type`, corresponding to the fact that set theorists think of $\mathrm{Hom}(X,Y)$ as a set), and `f : X → Y` means that `f` is a term of type `X → Y`, the type-theoretic version of $f \in \mathrm{Hom}(X,Y)$, and the way to say that `f` is a function from `X` to `Y` in type theory. -->
 
 数学におけるコロンの標準的な使い方があります．―― 関数を書くための記法です．`X` と `Y` が集合
-（あなたが集合論を使っている場合）または型（型理論を使っている場合）であるとき，
+（集合論を使っている場合）または型（型理論を使っている場合）であるとき，
 `X` から `Y` への関数を `f : X → Y` と書きます．これは実は Lean におけるコロンの使い方と一致しています．
 `X` から `Y` への関数の集まり $\mathrm{Hom}(X,Y)$ に対する Lean の表記法は `X → Y` であり，
 これは型です．（つまり `X → Y : Type` です．これは集合論で

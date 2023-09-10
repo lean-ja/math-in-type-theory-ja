@@ -349,7 +349,8 @@ Lean の型理論には <code>Type</code> という宇宙だけでなく，
 <div style="break-before: page; page-break-before: always;"></div><!-- # Propositions are types, proofs are terms. -->
 <h1 id="命題は型証明は項"><a class="header" href="#命題は型証明は項">命題は型，証明は項</a></h1>
 <!-- This is where the world of type theory seriously diverges from the way things are set up in set theory, and also the way things were set up in my brain up until three years ago. In trying to understand what was going on here, I even realised that mathematicians take some liberties with their language here. Before we start, consider this. The [Bolzano-Weierstrass theorem](https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem) is some statement in analysis about a bounded sequence having a convergent subsequence. I want to talk a little bit about how mathematicians use the phrase “Bolzano-Weierstrass theorem” in practice. A mathematician would say that the Bolzano-Weierstrass theorem is this statement about sequences having convergent subsequences. But if they are in the middle of a proof and need to apply it in order to continue with their proof, they say “by the Bolzano-Weierstrass theorem we deduce that there’s a convergent subsequence”. Nothing seems at all funny about any of this. But what I want to point out is that mathematicians are using the phrase “the Bolzano-Weierstrass theorem” in two different ways. When they say what it is, they are referring to the statement of the theorem. But when they say they’re using the Bolzano Weierstrass theorem, what they are actually using is its proof. The Birch and Swinnerton-Dyer conjecture is a perfectly well-formed true/false statement, you can certainly [say what it is](https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture). But you can’t use the Birch and Swinnerton-Dyer conjecture in the middle of a proof of something else if you want your proof to be complete, because at the time of writing the conjecture is an unsolved problem. Making a clear distinction between the statement of a theorem, and the proof of a theorem, is important here. A mathematician might use the phrase “the Bolzano-Weierstrass theorem” to mean either concept. This informal abuse of notation can confuse beginners, because in the below it’s really important to be able to distinguish between a theorem statement, and a theorem proof; they are two very different things. -->
-<p>これは，型理論の世界観が集合論と大きく異なる点です．何が起こっているのか理解しようとして，
+<p>これは，型理論の世界と集合論の世界との，そして３年前までの私の脳内世界との大きく異なる点です．
+何が起こっているのか理解しようとして，
 私は数学者が用語の濫用を行っていることに気づきました．まずそれについて考えてみましょう．
 <a href="https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem">ボルツァーノ＝ワイエルシュトラスの定理</a>
 とは, 解析学における, 収束する部分列を持つ有界数列についてのステートメントです．
@@ -357,21 +358,22 @@ Lean の型理論には <code>Type</code> という宇宙だけでなく，
 少しお話ししましょう．数学者は，「ボルツァーノ＝ワイエルシュトラスの定理とは，
 収束する部分列を持つ数列に関するこのステートメントのことだ」と言うでしょう．しかし証明の途中で，
 証明を続けるためにこの定理を適用する必要がある場合は，「ボルツァーノ＝ワイエルシュトラスの定理によって，
-収束する部分列があることが推論される」と言います．何もおかしなことではありません．しかし，
+収束する部分列があることが推論される」と言います．何もおかしなことはないように思えます．しかし，
 私が指摘したいのは，「ボルツァーノ＝ワイエルシュトラスの定理」という言葉が２つの異なる意味で使われている，
 ということです．「ボルツァーノ＝ワイエルシュトラスの定理とは何か」という場合，
-かれらは定理の記述に言及しています．しかし，「ボルツァーノ＝ワイエルシュトラスの定理を使って」
+かれらは定理のステートメントに言及しています．しかし，「ボルツァーノ＝ワイエルシュトラスの定理を使って」
 という場合，実際に使っているのはその証明です．バーチ・スウィンナートン＝ダイアー予想は，
 完全に整った命題であり，
-確かに <a href="https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture">それが何であるか</a>
-を言うことはできます．
-しかし，証明を完全なものにしたいのであれば，
-バーチ・スウィンナートン＝ダイアー予想を他の何かの証明の途中で使うことはできません．
+<a href="https://www.claymath.org/millennium-problems/birch-and-swinnerton-dyer-conjecture">それが何であるか</a>
+を正確に言うことができます．
+しかし，ある証明を完全なものにしたいのであれば，
+バーチ・スウィンナートン＝ダイアー予想をその証明の途中で使うことはできません．
 なぜなら現時点でこの予想は未解決問題だからです．ここで重要なのは，
 定理のステートメントと定理の証明とを明確に区別することです．
 数学者は「ボルツァーノ＝ワイエルシュトラスの定理」という言葉を，どちらの意味でも使うことがあります．
 このような非形式的な表記の濫用は初学者の混乱を招きます．なぜなら，
-以下では定理のステートメントと定理の証明を区別することが本当に重要だからです．</p>
+以下では定理のステートメントと定理の証明を区別することが本当に重要だからです．
+この２つは全く異なるものです．</p>
 <!-- In the [natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/), I use this abuse of notation because I am trying to communicate to mathematicians. The statement `∀ x : ℕ, x + 0 = x` is a true statement, and I say things like “this is called `add_zero` in Lean”. In the natural number game I write statements such as `add_zero : ∀ x : ℕ, x + 0 = x`. But what this means is that the term called `add_zero` in Lean is a proof of `∀ x : ℕ, x + 0 = x`! The colon is being used in the type theory way. I am intentionally vague about this concept in the natural number game. I let mathematicians believe that `add_zero` is somehow equal to the “idea” that $x+0=x$ for all $x$. But what is going on under the hood is that `∀ x : ℕ, x + 0 = x` is a Proposition, which is a type, and `add_zero` is its proof, which is a term. Making a clear distinction between the statement of a theorem, and its proof, is important here. The statements are the types, the proofs are the terms. -->
 <p><a href="http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/">natural number game (自然数ゲーム)</a> の中で，
 私は数学者を相手にしていたのでこのような表記の濫用を行っていました．
@@ -381,7 +383,7 @@ natural number game において，私は <code>add_zero : ∀ x : ℕ, x + 0 = 
 ということなのです！コロンは型理論的に使われています．
 私は natural number game では意図的にこの概念を曖昧にしました．
 <code>add_zero</code> はすべての $x$ に対して $x + 0 = x$ であるという「アイデア」と何らかの形で等しいと，
-数学者に信じさせたわけです．しかし裏では <code>∀ x : ℕ, x + 0 = x</code> は命題であり，したがって型であり，
+数学者に信じさせたわけです．しかし裏では <code>∀ x : ℕ, x + 0 = x</code> は命題であり，型でもあり，
 <code>add_zero</code> はその証明であり，項でもあります．ここで重要なのは，
 定理のステートメントとその証明を区別することです．ステートメントは型であり，証明は項です．</p>
 <!-- * Universe: `Prop` -->

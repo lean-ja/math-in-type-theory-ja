@@ -3,7 +3,7 @@ authors = ["Seasawher"]
 language = "ja"
 multilingual = false
 src = "src"
-title = "Mathematics in type theory 日本語版"
+title = "Mathematics in type theory 日本語訳"
 
 [output.html]
 git-repository-url = "https://github.com/lean-ja/math-in-type-theory-ja"

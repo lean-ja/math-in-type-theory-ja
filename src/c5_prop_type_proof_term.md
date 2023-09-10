@@ -31,7 +31,7 @@
 
 <!-- In the [natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/), I use this abuse of notation because I am trying to communicate to mathematicians. The statement `∀ x : ℕ, x + 0 = x` is a true statement, and I say things like “this is called `add_zero` in Lean”. In the natural number game I write statements such as `add_zero : ∀ x : ℕ, x + 0 = x`. But what this means is that the term called `add_zero` in Lean is a proof of `∀ x : ℕ, x + 0 = x`! The colon is being used in the type theory way. I am intentionally vague about this concept in the natural number game. I let mathematicians believe that `add_zero` is somehow equal to the “idea” that $x+0=x$ for all $x$. But what is going on under the hood is that `∀ x : ℕ, x + 0 = x` is a Proposition, which is a type, and `add_zero` is its proof, which is a term. Making a clear distinction between the statement of a theorem, and its proof, is important here. The statements are the types, the proofs are the terms. -->
 
-[natural number game (自然数ゲーム)](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/) の中で，
+[natural number game (自然数ゲーム)](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/) [^1]の中で，
 私は数学者を相手にしていたのでこのような表記の濫用を行っていました．
 `∀ x : ℕ, x + 0 = x` という文は真であり，「これは Lean では `add_zero` と呼ばれる」と私は言っていました．
 natural number game において，私は `add_zero : ∀ x : ℕ, x + 0 = x` と書いていました．しかし，
@@ -50,3 +50,7 @@ natural number game において，私は `add_zero : ∀ x : ℕ, x + 0 = x` �
 <!-- * Examples of terms: the proof that `2 + 2 = 4` (a term of type `2 + 2 = 4`), the proof of Fermat’s Last Theorem (a term of type `∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0`) -->
 * 具体的な項 : `2 + 2 = 4` の証明（`2 + 2 = 4` 型を持つ項），フェルマーの最終定理の証明
   （`∀ x y z : ℕ, n > 2 ∧ x^n + y^n = z^n → x*y = 0` という型を持つ項）
+
+[^1] 訳注: natural number game は，ペアノの公理から始めて整数の基本的な性質を Lean で示すブラウザゲームです．
+ここで紹介されているのは Lean3 版ですが，Lean4 版が[こちら](https://adam.math.hhu.de/#/g/hhu-adam/NNG4)にあります．
+ソースコードは[こちら](https://github.com/hhu-adam/NNG4)です．

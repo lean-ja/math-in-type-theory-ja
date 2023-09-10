@@ -167,38 +167,11 @@
                         <!-- # Elements of a theorem -->
 <h1 id="定理の要素"><a class="header" href="#定理の要素">定理の要素</a></h1>
 <!-- So our mental model of the statement `π : ℝ` is that `ℝ`, the type, is “a collection of stuff”, and `π`, the term, is a member of that collection. If we continue with this analogy, it says that the statement `2 + 2 = 4` is some kind of collection, and a proof of `2 + 2 = 4` is a member of that collection. In other words, Lean is suggesting that we model the true/false statement `2 + 2 = 4` as being some sort of a set, and a proof of `2 + 2 = 4` is an element of that set. Now in Lean, it is an inbuilt axiom that all proofs of a proposition are equal. So if `a : 2 + 2 = 4` and `b : 2 + 2 = 4` then `a = b`. This is because we’re working in the `Prop` universe — this is how Propositions behave in Lean. In the `Type` universe the analogue is not remotely true — we have `π : ℝ` and `37 : ℝ` and certainly $\pi\not=37$. This special quirk of the `Prop` universe is called “proof irrelevance”. Formally we could say that if `P : Prop`, if `a : P` and if `b : P` then `a = b`. Of course if a Proposition is false, then it has no proofs at all! It’s like the empty set. So Lean’s model of Propositions is that the true ones are like sets with $1$ element, and the false ones are like sets with $0$ elements. -->
-<p>つまり <code>π : ℝ</code> というステートメントに対する私たちのメンタルモデルは，型である <code>ℝ</code> は「ものの集まり」であり，
-項である <code>π</code> はその集まりのメンバーである，ということです．このアナロジーを続けるなら，
-<code>2 + 2 = 4</code> というステートメントはある種の集まりであり，<code>2 + 2 = 4</code> の証明はそのメンバーです．
-言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code>
-の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，
-ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code>
-ならば <code>a = b</code> となります．これは <code>Prop</code> 宇宙の中だから起こることです ―― これが Lean における命題の振る舞いです．
-<code>Type</code> 宇宙の中ではこのようなことはありえません．―― <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．
-この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．
-形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．
-もちろん，ある命題が偽ならば，その命題には証明は全くありません！偽の命題は空集合のようなものです．
-つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は $0$
-個の要素を持つ集合のようなものだと言っています．</p>
+<p>つまり <code>π : ℝ</code> というステートメントに対する私たちのメンタルモデルは，型である <code>ℝ</code> は「ものの集まり」であり，項である <code>π</code> はその集まりのメンバーである，ということです．このアナロジーを続けるなら，<code>2 + 2 = 4</code> というステートメントはある種の集まりであり，<code>2 + 2 = 4</code> の証明はそのメンバーです．言い換えれば，Lean は <code>2 + 2 = 4</code> をある種の集合であるとし，<code>2 + 2 = 4</code> の証明はその集合の要素であるとするようなモデルを提案しているのです．Lean では，ある命題の証明はすべて等しいという公理が組み込まれています．つまり <code>a : 2 + 2 = 4</code> かつ <code>b : 2 + 2 = 4</code> ならば <code>a = b</code> となります．これは <code>Prop</code> 宇宙の中だから起こることです ―― これが Lean における命題の振る舞いです．<code>Type</code> 宇宙の中ではこのようなことはありえません．―― <code>π : ℝ</code> かつ <code>37 : ℝ</code> ですが，$\pi\not=37$ です．この <code>Prop</code> 宇宙の特別な癖は「proof irrelevance (証明無関係)」と呼ばれます．形式的には，<code>P : Prop</code> に対して <code>a : P</code> かつ <code>b : P</code> ならば <code>a = b</code> である，と言い表せます．もちろん，ある命題が偽ならば，その命題には証明は全くありません！偽の命題は空集合のようなものです．つまり，Lean の命題のモデルは，真の命題は１つの要素を持つ集合のようなもので，偽の命題は $0$ 個の要素を持つ集合のようなものだと言っています．</p>
 <!-- Recall that if `f : X → Y` then this means that `f` is a function from `X` to `Y`. Now say $P$ and $Q$ are Propositions, and let’s say that we know $P\implies Q$. What does this mean? It means that $P$ implies $Q$. It means that if $P$ is true, then $Q$ is true. It means that if we have a proof of $P$, we can make a proof of $Q$. It is a function from the proofs of $P$ to the proofs of $Q$. It is a function sending an element of $P$ to an element of $Q$. It is a term of type `P → Q`. Again: a proof $h$ of $P\implies Q$ is a term `h : P → Q`. This is why in the natural number game we use the `→` symbol to denote implication. -->
-<p><code>f : X → Y</code> であるとき，<code>f</code> は <code>X</code> から <code>Y</code> への関数であるということを思い出しましょう．ここで，
-$P$ と $Q$ を命題とし，$P\implies Q$ がわかっているとします．これは何を意味するでしょうか？
-これは $P$ ならば $Q$ であるということを意味します．$P$ が真であるとき，$Q$ も真だということです．
-$P$ の証明があれば，$Q$ の証明も作れるということです．
-$P\implies Q$ は $P$ の証明から $Q$ の証明を得る関数です．
-$P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型を持つ項です．繰り返しますが，$P\implies Q$
-の証明は <code>h : P → Q</code> という項 <code>h</code> です．natural number game で，私が <code>→</code>
-記号を含意を表すのに使ったのは，このためです．</p>
+<p><code>f : X → Y</code> であるとき，<code>f</code> は <code>X</code> から <code>Y</code> への関数であるということを思い出しましょう．ここで，$P$ と $Q$ を命題とし，$P\implies Q$ がわかっているとします．これは何を意味するでしょうか？これは $P$ ならば $Q$ であるということを意味します．$P$ が真であるとき，$Q$ も真だということです．$P$ の証明があれば，$Q$ の証明も作れるということです．$P\implies Q$ は $P$ の証明から $Q$ の証明を得る関数です．$P$ の要素を $Q$ の要素に送る関数です．<code>P → Q</code> 型を持つ項です．繰り返しますが，$P\implies Q$ の証明は <code>h : P → Q</code> という項 <code>h</code> です．natural number game で，私が <code>→</code> 記号を含意を表すのに使ったのは，このためです．</p>
 <!-- Let `false` denote a generic false statement (thought of as a set with $0$ elements), and let `true` denote a generic true statement (thought of as a set with $1$ element). Can we construct a term of type `false → false` or a term of type `true → true`? Sure — just use the identity function. In fact, in both cases there is a unique function — the hom sets have size $1$. Can we construct a term of type `false → true`? Sure, there is a function from the set with $0$ elements to a set with $1$ element, and again this function is unique. But can we construct a term of type `true → false`? No we can’t, because where do we send a proof of `true`? There are no proofs of `false` to send it to. So `true → false` is a set of size $0$. This corresponds to the standard truth table for `→`, where the first three statements we analysed were true and the last was false. -->
-<p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文
-（$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code>
-型の項を作ることはできるでしょうか？もちろんです．―― 恒等関数を使えばよいだけです．実際，
-どちらの場合も関数は一意に定まります．―― hom 集合のサイズは $1$ です．<code>false → true</code>
-型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$
-個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？
-これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，
-送る先がありません．したがって <code>true → false</code> はサイズ $0$ の集合です．これは <code>→</code>
-の標準的な真理値表に相当し，最初に分析した３つの文は真で，最後の文は偽です．</p>
+<p><code>false</code> を一般的な偽の文（$0$ 個の要素を持つ集合と考えられる）とし，<code>true</code> を一般的な真の文（$1$ 個の要素を持つ集合と考えられる）とします．<code>false → false</code> 型の項，または <code>true → true</code> 型の項を作ることはできるでしょうか？もちろんです．―― 恒等関数を使えばよいだけです．実際，どちらの場合も関数は一意に定まります．―― hom 集合のサイズは $1$ です．<code>false → true</code> 型の項を作ることはできるでしょうか？もちろん，$0$ 個の要素を持つ集合から $1$ 個の要素を持つ集合への関数はあり，この関数も一意です．では <code>true → false</code> 型の項を作ることはできますか？これはできません．<code>true</code> の証明をどこに送ればいいのでしょうか？<code>false</code> の証明は存在しないので，送る先がありません．したがって <code>true → false</code> はサイズ $0$ の集合です．これは <code>→</code> の標準的な真理値表に相当し，最初に分析した３つの文は真で，最後の文は偽です．</p>
 
                     </main>
 

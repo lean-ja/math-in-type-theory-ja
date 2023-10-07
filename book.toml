@@ -7,6 +7,7 @@ title = "Mathematics in type theory 日本語訳"
 
 [output.html]
 git-repository-url = "https://github.com/lean-ja/math-in-type-theory-ja"
+mathjax-support = true
 
 # 日本語検索に対応していないため，無効にする
 [output.html.search]

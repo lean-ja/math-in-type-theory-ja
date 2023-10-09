@@ -11,11 +11,11 @@
 
 <!-- This will all be clearer with examples. 2 + 2 = 4 is a Proposition, so we can write `2 + 2 = 4 : Prop`. But 2 + 2 = 5 is also a Proposition, so `2 + 2 = 5 : Prop` as well. I’ll say it again — Propositions do not have to be true! Propositions are true/false statements. Let’s see some more complex examples. -->
 
-例を見るとわかりやすいでしょう．\\(2 + 2 = 4\\) は命題なので `2 + 2 = 4 : Prop` と書くことができます．しかし，\\(2 + 2 = 5\\) も命題なので，`2 + 2 = 5 : Prop` と書くこともできます．何度も言いますが，命題が真である必要はありません！命題は真か偽かどちらかになる文のことです．もう少し複雑な例を見てみましょう．
+例を見るとわかりやすいでしょう．$2 + 2 = 4$ は命題なので `2 + 2 = 4 : Prop` と書くことができます．しかし，$2 + 2 = 5$ も命題なので，`2 + 2 = 5 : Prop` と書くこともできます．何度も言いますが，命題が真である必要はありません！命題は真か偽かどちらかになる文のことです．もう少し複雑な例を見てみましょう．
 
 <!-- The true/false statement that x+0=x for all natural numbers x is a Proposition: in Lean this can be expressed as `(∀ x : ℕ, x + 0 = x) : Prop` . A Proposition is a term of type `Prop` (just like the types we saw earlier were terms of type `Type`). Let RH denote the statement of the Riemann Hypothesis. Then `RH : Prop`. We don’t care if it’s true, false, independent of the axioms of mathematics, undecidable, whatever. A Proposition is a true/false statement. Let’s look at the part of Lean’s type theory hierarchy which lives in the `Prop` universe. -->
 
-「すべての自然数 \\(x\\) について \\(x + 0 = x\\) である」という文は命題です．Lean では，これは `(∀ x : ℕ, x + 0 = x) : Prop` と表せます．命題は `Prop` 型を持つ項です．（先ほど見てきた項が型 `Type` を持っていたのと同様です）RH をリーマン仮説のステートメントとします．すると `RH : Prop` となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか，等は問いません．命題とは真か偽かどちらかになる文のことです．Lean の型理論の階層のうち，`Prop` 宇宙に住む部分を見てみましょう．
+「すべての自然数 $x$ について $x + 0 = x$ である」という文は命題です．Lean では，これは `(∀ x : ℕ, x + 0 = x) : Prop` と表せます．命題は `Prop` 型を持つ項です．（先ほど見てきた項が型 `Type` を持っていたのと同様です）RH をリーマン仮説のステートメントとします．すると `RH : Prop` となります．それが真か偽か，特定の数学の公理と独立であるか，決定不能であるか，等は問いません．命題とは真か偽かどちらかになる文のことです．Lean の型理論の階層のうち，`Prop` 宇宙に住む部分を見てみましょう．
 
 <!-- * Universe: `Prop` -->
 * 宇宙 : `Prop`

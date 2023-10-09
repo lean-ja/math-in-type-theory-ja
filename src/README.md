@@ -1,5 +1,7 @@
 # Mathematics in type thoery 日本語訳
 
+> 注意⚠️： Mathematics in type theory の日本語訳のメンテは [xena-ja](https://github.com/lean-ja/xena-ja) に移管されました．issue や PR はこのリポジトリではなく，[xena-ja](https://github.com/lean-ja/xena-ja) にお願いします．
+
 原文は Kevin Buzzard 氏によるブログ記事 [Mathematics in type theory.](https://xenaproject.wordpress.com/2020/06/20/mathematics-in-type-theory/) です．
 
 ## この翻訳について

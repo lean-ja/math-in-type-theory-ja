@@ -31,8 +31,6 @@
 
         <!-- Custom theme stylesheets -->
 
-        <!-- MathJax -->
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body class="sidebar-visible no-js">
     <div id="body-container">
@@ -121,7 +119,15 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+                <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script>
+                  window.MathJax = {
+                    tex: {
+                      inlineMath: [['$', '$'], ['\\(', '\\)']]
+                    }
+                  };
+                </script>                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
